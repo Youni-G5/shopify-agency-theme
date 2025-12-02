@@ -1,110 +1,90 @@
 {% comment %}
-  Hero Section - Modern with Floating Shapes & Gradient Mesh
+  Professional Hero Section - Corporate & Elegant
 {% endcomment %}
 
-<section class="hero-modern" id="hero-particles">
-  <!-- Floating Background Shapes -->
-  <div class="hero-floating-shapes">
-    <div class="floating-shape shape-1"></div>
-    <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
-  </div>
-
-  <!-- Hero Content -->
-  <div class="hero-content">
-    {% if section.settings.eyebrow %}
-      <p class="scroll-reveal" style="color: var(--color-primary); font-weight: 600; font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
-        {{ section.settings.eyebrow }}
-      </p>
-    {% endif %}
-
-    <h1 class="heading-display scroll-reveal">
-      {{ section.settings.heading | default: "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>" }}
-    </h1>
-
-    {% if section.settings.subheading %}
-      <p class="scroll-reveal" style="font-size: var(--font-size-xl); color: var(--color-text-light); max-width: 700px; margin: 0 auto var(--space-10);">
-        {{ section.settings.subheading }}
-      </p>
-    {% endif %}
-
-    <!-- CTA Buttons -->
-    <div class="scroll-reveal" style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-      {% if section.settings.primary_button_text != blank and section.settings.primary_button_link != blank %}
-        <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary magnetic">
-          {{ section.settings.primary_button_text }}
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+<section class="hero-professional">
+  <div class="container-professional">
+    <div style="max-width: 900px;">
+      
+      {% if section.settings.eyebrow %}
+        <p class="text-uppercase scroll-reveal" style="color: var(--color-secondary); margin-bottom: var(--space-6);">
+          {{ section.settings.eyebrow }}
+        </p>
       {% endif %}
 
-      {% if section.settings.secondary_button_text != blank and section.settings.secondary_button_link != blank %}
-        <a href="{{ section.settings.secondary_button_link }}" class="btn btn-glass magnetic">
-          {{ section.settings.secondary_button_text }}
-        </a>
+      <h1 class="heading-display scroll-reveal" style="margin-bottom: var(--space-6);">
+        {{ section.settings.heading | default: "Excellence in E-Commerce Solutions" }}
+      </h1>
+
+      {% if section.settings.subheading %}
+        <p class="text-lead scroll-reveal" style="margin-bottom: var(--space-12); max-width: 700px;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      <!-- CTA Buttons -->
+      <div class="scroll-reveal" style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+        {% if section.settings.primary_button_text != blank and section.settings.primary_button_link != blank %}
+          <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary btn-lg">
+            {{ section.settings.primary_button_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.secondary_button_text != blank and section.settings.secondary_button_link != blank %}
+          <a href="{{ section.settings.secondary_button_link }}" class="btn btn-secondary btn-lg">
+            {{ section.settings.secondary_button_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Stats -->
+      {% if section.settings.show_stats %}
+        <div class="scroll-reveal" style="margin-top: var(--space-20); display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-8); max-width: 600px;">
+          <div style="border-left: 3px solid var(--color-secondary); padding-left: var(--space-4);">
+            <div class="heading-lg" style="color: var(--color-primary); margin-bottom: var(--space-2);">{{ section.settings.stat_1_number }}+</div>
+            <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">{{ section.settings.stat_1_label }}</p>
+          </div>
+          <div style="border-left: 3px solid var(--color-secondary); padding-left: var(--space-4);">
+            <div class="heading-lg" style="color: var(--color-primary); margin-bottom: var(--space-2);">{{ section.settings.stat_2_number }}%</div>
+            <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">{{ section.settings.stat_2_label }}</p>
+          </div>
+          <div style="border-left: 3px solid var(--color-secondary); padding-left: var(--space-4);">
+            <div class="heading-lg" style="color: var(--color-primary); margin-bottom: var(--space-2);">{{ section.settings.stat_3_number }}h</div>
+            <p style="color: var(--color-text-muted); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);">{{ section.settings.stat_3_label }}</p>
+          </div>
+        </div>
       {% endif %}
     </div>
-
-    <!-- Stats -->
-    {% if section.settings.show_stats %}
-      <div class="scroll-scale" style="margin-top: var(--space-16); display: flex; gap: var(--space-12); justify-content: center; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div class="heading-md" data-count="{{ section.settings.stat_1_number }}">0</div>
-          <p style="color: var(--color-text-light);">{{ section.settings.stat_1_label }}</p>
-        </div>
-        <div style="text-align: center;">
-          <div class="heading-md" data-count="{{ section.settings.stat_2_number }}">0</div>
-          <p style="color: var(--color-text-light);">{{ section.settings.stat_2_label }}</p>
-        </div>
-        <div style="text-align: center;">
-          <div class="heading-md" data-count="{{ section.settings.stat_3_number }}">0</div>
-          <p style="color: var(--color-text-light);">{{ section.settings.stat_3_label }}</p>
-        </div>
-      </div>
-    {% endif %}
   </div>
 </section>
 
-<style>
-  .hero-modern {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 10;
-  }
-</style>
-
 {% schema %}
 {
-  "name": "Hero Modern",
+  "name": "Hero Professional",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow Text",
-      "default": "🚀 Agence Shopify Premium"
+      "default": "Premium Shopify Agency"
     },
     {
-      "type": "html",
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>"
+      "default": "Excellence in E-Commerce Solutions"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Des thèmes Shopify sur-mesure qui convertissent. Design moderne, performance optimale, support premium."
+      "default": "We create high-performance Shopify stores that deliver exceptional user experiences and drive measurable business results."
     },
     {
       "type": "text",
       "id": "primary_button_text",
       "label": "Primary Button Text",
-      "default": "Voir Notre Portfolio"
+      "default": "View Our Work"
     },
     {
       "type": "url",
@@ -115,7 +95,7 @@
       "type": "text",
       "id": "secondary_button_text",
       "label": "Secondary Button Text",
-      "default": "Demander un Devis"
+      "default": "Get in Touch"
     },
     {
       "type": "url",
@@ -138,7 +118,7 @@
       "type": "text",
       "id": "stat_1_label",
       "label": "Stat 1 Label",
-      "default": "Projets Réussis"
+      "default": "Projects Delivered"
     },
     {
       "type": "number",
@@ -150,7 +130,7 @@
       "type": "text",
       "id": "stat_2_label",
       "label": "Stat 2 Label",
-      "default": "% Satisfaction"
+      "default": "Client Satisfaction"
     },
     {
       "type": "number",
@@ -162,12 +142,12 @@
       "type": "text",
       "id": "stat_3_label",
       "label": "Stat 3 Label",
-      "default": "Heures Support"
+      "default": "Support Available"
     }
   ],
   "presets": [
     {
-      "name": "Hero Modern"
+      "name": "Hero Professional"
     }
   ]
 }
