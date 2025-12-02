@@ -1,0 +1,37 @@
+{
+  "current": {
+    "color_primary": "#2563eb",
+    "color_secondary": "#7c3aed",
+    "color_accent": "#f59e0b",
+    "color_text": "#1f2937",
+    "color_background": "#ffffff",
+    "font_heading": "assistant_n4",
+    "font_body": "assistant_n4",
+    "font_size_base": 16,
+    "logo_width": 150,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "show_cta": true,
+          "cta_text": "Contact",
+          "cta_link": "/pages/contact"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "column_1_heading": "À Propos",
+          "column_1_text": "<p>Nous créons des expériences e-commerce exceptionnelles sur Shopify.</p>",
+          "column_2_heading": "Liens Rapides",
+          "menu_2": "footer",
+          "column_3_heading": "Contact",
+          "contact_email": "contact@example.com",
+          "contact_phone": "+33 1 23 45 67 89",
+          "copyright_text": "Tous droits réservés."
+        }
+      }
+    }
+  }
+}
