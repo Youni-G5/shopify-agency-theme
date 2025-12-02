@@ -1,0 +1,177 @@
+{% comment %}
+  Features Section - Glassmorphism Cards
+{% endcomment %}
+
+<section class="section-modern" style="background: var(--gradient-mesh); background-size: 400% 400%; animation: gradientShift 20s ease infinite;">
+  <div class="container-modern">
+    <!-- Section Header -->
+    <div style="text-align: center; max-width: 800px; margin: 0 auto var(--space-16);">
+      {% if section.settings.eyebrow %}
+        <p class="scroll-reveal" style="color: var(--color-primary); font-weight: 600; font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      <h2 class="heading-xl scroll-reveal">
+        {{ section.settings.heading | default: "Pourquoi Nous Choisir" }}
+      </h2>
+
+      {% if section.settings.subheading %}
+        <p class="scroll-reveal" style="color: var(--color-text-light); font-size: var(--font-size-lg);">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid-modern grid-3">
+      {% for block in section.blocks %}
+        <div class="glass-card scroll-reveal card-tilt" style="text-align: center;">
+          <!-- Icon -->
+          {% if block.settings.icon %}
+            <div style="width: 80px; height: 80px; margin: 0 auto var(--space-6); background: var(--gradient-primary); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">
+              {{ block.settings.icon }}
+            </div>
+          {% endif %}
+
+          <!-- Title -->
+          <h3 class="heading-md" style="margin-bottom: var(--space-4);">
+            {{ block.settings.title }}
+          </h3>
+
+          <!-- Description -->
+          <p style="color: var(--color-text-light); line-height: 1.7;">
+            {{ block.settings.description }}
+          </p>
+
+          <!-- Optional Link -->
+          {% if block.settings.link_text %}
+            <a href="{{ block.settings.link }}" style="display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-primary); font-weight: 600; margin-top: var(--space-4); text-decoration: none;">
+              {{ block.settings.link_text }}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features Glassmorphism",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "✨ Nos Avantages"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pourquoi Nous Choisir"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Une expertise reconnue au service de votre réussite e-commerce"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "🚀"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Performance Optimale"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Sites ultra-rapides avec un score PageSpeed > 90. Optimisation poussée pour maximiser vos conversions."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Glassmorphism",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🚀",
+            "title": "Performance Optimale",
+            "description": "Sites ultra-rapides avec un score PageSpeed > 90. Optimisation poussée pour maximiser vos conversions."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "Design Unique",
+            "description": "Identité visuelle forte et mémorable. Chaque projet est conçu sur-mesure pour refléter votre marque."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "💎",
+            "title": "Code Premium",
+            "description": "Architecture Shopify 2.0, code propre et maintenable. Conformité aux standards les plus élevés."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "📱",
+            "title": "Mobile-First",
+            "description": "Expérience impeccable sur tous les appareils. 70% de vos clients sont sur mobile."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🔍",
+            "title": "SEO Optimisé",
+            "description": "Structure technique parfaite pour Google. Meta tags, schema markup, vitesse optimisée."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "💬",
+            "title": "Support Premium",
+            "description": "Accompagnement personnalisé et réactif. Formation complète pour gérer votre boutique en toute autonomie."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

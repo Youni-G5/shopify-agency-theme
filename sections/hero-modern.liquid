@@ -1,0 +1,176 @@
+{% comment %}
+  Hero Section - Modern with Floating Shapes & Gradient Mesh
+{% endcomment %}
+
+<section class="hero-modern" id="hero-particles">
+  <!-- Floating Background Shapes -->
+  <div class="hero-floating-shapes">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    {% if section.settings.eyebrow %}
+      <p class="scroll-reveal" style="color: var(--color-primary); font-weight: 600; font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    <h1 class="heading-display scroll-reveal">
+      {{ section.settings.heading | default: "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>" }}
+    </h1>
+
+    {% if section.settings.subheading %}
+      <p class="scroll-reveal" style="font-size: var(--font-size-xl); color: var(--color-text-light); max-width: 700px; margin: 0 auto var(--space-10);">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+
+    <!-- CTA Buttons -->
+    <div class="scroll-reveal" style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+      {% if section.settings.primary_button_text %}
+        <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary magnetic">
+          {{ section.settings.primary_button_text }}
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+
+      {% if section.settings.secondary_button_text %}
+        <a href="{{ section.settings.secondary_button_link }}" class="btn btn-glass magnetic">
+          {{ section.settings.secondary_button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Stats -->
+    {% if section.settings.show_stats %}
+      <div class="scroll-scale" style="margin-top: var(--space-16); display: flex; gap: var(--space-12); justify-content: center; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div class="heading-md" data-count="{{ section.settings.stat_1_number }}">0</div>
+          <p style="color: var(--color-text-light);">{{ section.settings.stat_1_label }}</p>
+        </div>
+        <div style="text-align: center;">
+          <div class="heading-md" data-count="{{ section.settings.stat_2_number }}">0</div>
+          <p style="color: var(--color-text-light);">{{ section.settings.stat_2_label }}</p>
+        </div>
+        <div style="text-align: center;">
+          <div class="heading-md" data-count="{{ section.settings.stat_3_number }}">0</div>
+          <p style="color: var(--color-text-light);">{{ section.settings.stat_3_label }}</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .hero-modern {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Modern",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "🚀 Agence Shopify Premium"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Des thèmes Shopify sur-mesure qui convertissent. Design moderne, performance optimale, support premium."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Voir Notre Portfolio"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link",
+      "default": "/pages/portfolio"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Demander un Devis"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Statistics",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "stat_1_number",
+      "label": "Stat 1 Number",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 Label",
+      "default": "Projets Réussis"
+    },
+    {
+      "type": "number",
+      "id": "stat_2_number",
+      "label": "Stat 2 Number",
+      "default": 98
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 Label",
+      "default": "% Satisfaction"
+    },
+    {
+      "type": "number",
+      "id": "stat_3_number",
+      "label": "Stat 3 Number",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 Label",
+      "default": "Heures Support"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Modern"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,211 @@
+{% comment %}
+  Portfolio Section - Modern Grid with Hover Effects
+{% endcomment %}
+
+<section class="section-modern" style="background: var(--color-bg-alt);">
+  <div class="container-modern">
+    <!-- Section Header -->
+    <div style="text-align: center; max-width: 800px; margin: 0 auto var(--space-16);">
+      {% if section.settings.eyebrow %}
+        <p class="scroll-reveal" style="color: var(--color-primary); font-weight: 600; font-size: var(--font-size-lg); margin-bottom: var(--space-4);">
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      <h2 class="heading-xl scroll-reveal">
+        {{ section.settings.heading | default: "Nos Réalisations" }}
+      </h2>
+
+      {% if section.settings.subheading %}
+        <p class="scroll-reveal" style="color: var(--color-text-light); font-size: var(--font-size-lg);">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="grid-modern grid-2" style="gap: var(--space-8);">
+      {% for block in section.blocks %}
+        <article class="card scroll-reveal hover-lift" style="padding: 0; overflow: hidden;">
+          <!-- Project Image -->
+          {% if block.settings.image %}
+            <div style="position: relative; overflow: hidden; aspect-ratio: 16/10;">
+              <img 
+                src="{{ block.settings.image | img_url: '800x' }}" 
+                alt="{{ block.settings.title }}"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);"
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+              >
+              
+              <!-- Category Badge -->
+              {% if block.settings.category %}
+                <div style="position: absolute; top: var(--space-4); left: var(--space-4); background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text);">
+                  {{ block.settings.category }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <!-- Project Info -->
+          <div style="padding: var(--space-6);">
+            <h3 class="heading-md" style="margin-bottom: var(--space-3);">
+              {{ block.settings.title }}
+            </h3>
+
+            <p style="color: var(--color-text-light); margin-bottom: var(--space-5); line-height: 1.7;">
+              {{ block.settings.description }}
+            </p>
+
+            <!-- Tags -->
+            {% if block.settings.tags %}
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5);">
+                {% assign tag_list = block.settings.tags | split: ',' %}
+                {% for tag in tag_list %}
+                  <span style="background: var(--color-bg-alt); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                    {{ tag | strip }}
+                  </span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <!-- View Project Link -->
+            {% if block.settings.link %}
+              <a 
+                href="{{ block.settings.link }}" 
+                class="btn btn-secondary" 
+                style="width: 100%;"
+              >
+                {{ block.settings.link_text | default: "Voir le Projet" }}
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <!-- View All Button -->
+    {% if section.settings.show_view_all %}
+      <div class="scroll-reveal" style="text-align: center; margin-top: var(--space-12);">
+        <a href="{{ section.settings.view_all_link | default: '/pages/portfolio' }}" class="btn btn-primary magnetic">
+          {{ section.settings.view_all_text | default: "Voir Tous Nos Projets" }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Portfolio Modern",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "💼 Portfolio"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Nos Réalisations"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Découvrez quelques-uns de nos projets récents et les résultats obtenus"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "Voir Tous Nos Projets"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Button Link",
+      "default": "/pages/portfolio"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "project",
+      "name": "Project",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Project Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "E-commerce"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Project Title",
+          "default": "Boutique Mode Luxe"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Site e-commerce haut de gamme avec expérience d'achat premium. +150% de conversions en 6 mois."
+        },
+        {
+          "type": "text",
+          "id": "tags",
+          "label": "Tags (comma separated)",
+          "default": "Shopify, Design, UX/UI"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Project Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Voir le Projet"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Portfolio Modern",
+      "blocks": [
+        {
+          "type": "project"
+        },
+        {
+          "type": "project"
+        },
+        {
+          "type": "project"
+        },
+        {
+          "type": "project"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
