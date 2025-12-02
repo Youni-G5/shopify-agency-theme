@@ -1,10 +1,10 @@
 {% comment %}
-  Modern Navigation Header - Glassmorphism Fixed Nav
+  Professional Header - Clean & Corporate
 {% endcomment %}
 
-<header class="nav-modern" id="site-header">
-  <nav class="nav-glass">
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);">
+<header class="header-professional" id="site-header">
+  <div class="container-professional">
+    <nav class="nav-professional">
       
       <!-- Logo -->
       <div class="logo" style="flex-shrink: 0;">
@@ -18,21 +18,19 @@
             >
           </a>
         {% else %}
-          <a href="{{ routes.root_url }}" style="text-decoration: none;">
-            <span class="text-gradient-primary" style="font-size: var(--font-size-xl); font-weight: 800;">
-              {{ shop.name }}
-            </span>
+          <a href="{{ routes.root_url }}" style="text-decoration: none; font-family: var(--font-heading); font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary);">
+            {{ shop.name }}
           </a>
         {% endif %}
       </div>
 
       <!-- Desktop Navigation -->
-      <ul class="nav-menu-modern" style="margin: 0; padding: 0;">
+      <ul class="nav-links" style="display: none;">
         {% for link in linklists[section.settings.menu].links %}
-          <li style="list-style: none;">
+          <li>
             <a 
               href="{{ link.url }}" 
-              class="nav-link-modern {% if link.active %}active{% endif %}"
+              class="nav-link {% if link.active %}active{% endif %}"
             >
               {{ link.title }}
             </a>
@@ -41,44 +39,44 @@
       </ul>
 
       <!-- CTA Button -->
-      {% if section.settings.show_cta and section.settings.cta_link != blank %}
-        <div style="flex-shrink: 0;">
-          <a href="{{ section.settings.cta_link }}" class="btn btn-primary magnetic" style="padding: var(--space-3) var(--space-6);">
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        {% if section.settings.show_cta and section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="btn btn-primary" style="display: none;">
             {{ section.settings.cta_text }}
           </a>
-        </div>
-      {% endif %}
+        {% endif %}
 
-      <!-- Mobile Menu Toggle -->
-      <button 
-        class="mobile-menu-toggle" 
-        aria-label="Toggle menu"
-        style="display: none; background: none; border: none; cursor: pointer; padding: var(--space-2);"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </nav>
+        <!-- Mobile Menu Toggle -->
+        <button 
+          class="mobile-menu-toggle" 
+          aria-label="Toggle menu"
+          style="background: none; border: none; cursor: pointer; padding: var(--space-2);"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
 </header>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" style="display: none;">
-  <div class="mobile-menu-content glass" style="position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh; padding: var(--space-8); transition: right var(--transition-slow); z-index: var(--z-modal);">
-    <button class="mobile-menu-close" style="position: absolute; top: var(--space-4); right: var(--space-4); background: none; border: none; cursor: pointer; font-size: var(--font-size-2xl);">
+  <div class="mobile-menu-content" style="position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh; background: var(--color-white); padding: var(--space-8); transition: right var(--transition-slow); z-index: var(--z-modal); box-shadow: var(--shadow-xl);">
+    <button class="mobile-menu-close" style="position: absolute; top: var(--space-4); right: var(--space-4); background: none; border: none; cursor: pointer; font-size: var(--font-size-3xl); color: var(--color-text);">
       ×
     </button>
     
     <nav style="margin-top: var(--space-12);">
       <ul style="list-style: none; padding: 0; margin: 0;">
         {% for link in linklists[section.settings.menu].links %}
-          <li style="margin-bottom: var(--space-4);">
+          <li style="margin-bottom: var(--space-2); border-bottom: 1px solid var(--color-border);">
             <a 
               href="{{ link.url }}" 
-              style="display: block; font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text); text-decoration: none; padding: var(--space-3) 0;"
+              style="display: block; font-size: var(--font-size-lg); font-weight: var(--font-weight-medium); color: var(--color-text); text-decoration: none; padding: var(--space-4) 0;"
             >
               {{ link.title }}
             </a>
@@ -93,18 +91,21 @@
       {% endif %}
     </nav>
   </div>
-  <div class="mobile-menu-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.5); opacity: 0; pointer-events: none; transition: opacity var(--transition-base); z-index: {{ z-modal | minus: 1 }};"></div>
+  <div class="mobile-menu-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.5); opacity: 0; pointer-events: none; transition: opacity var(--transition-base); z-index: 1049;"></div>
 </div>
 
 <style>
-  @media (max-width: 768px) {
-    .nav-menu-modern,
-    .nav-modern > div > div:last-child {
-      display: none !important;
+  @media (min-width: 769px) {
+    .nav-links {
+      display: flex !important;
+    }
+    
+    .btn-primary {
+      display: inline-flex !important;
     }
     
     .mobile-menu-toggle {
-      display: block !important;
+      display: none !important;
     }
   }
   
@@ -119,7 +120,6 @@
 </style>
 
 <script>
-  // Mobile menu toggle
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.querySelector('.mobile-menu-toggle');
     const close = document.querySelector('.mobile-menu-close');
@@ -145,7 +145,7 @@
 
 {% schema %}
 {
-  "name": "Header Modern",
+  "name": "Header Professional",
   "settings": [
     {
       "type": "image_picker",
@@ -177,7 +177,7 @@
       "type": "text",
       "id": "cta_text",
       "label": "CTA Text",
-      "default": "Devis Gratuit"
+      "default": "Get Started"
     },
     {
       "type": "url",
