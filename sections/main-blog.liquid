@@ -1,0 +1,80 @@
+{% paginate blog.articles by 12 %}
+
+<div class="section-modern">
+  <div class="container-modern">
+    
+    <header style="text-align: center; margin-bottom: var(--space-16);">
+      <h1 class="heading-display scroll-reveal">{{ blog.title }}</h1>
+    </header>
+
+    {% if blog.articles.size > 0 %}
+      <div class="grid-modern" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-8);">
+        {% for article in blog.articles %}
+          <article class="card hover-lift scroll-reveal" style="padding: 0; overflow: hidden;">
+            <a href="{{ article.url }}" style="text-decoration: none; color: inherit;">
+              
+              {% if article.image %}
+                <img 
+                  src="{{ article.image | image_url: width: 600 }}" 
+                  alt="{{ article.title }}"
+                  loading="lazy"
+                  style="width: 100%; aspect-ratio: 16/9; object-fit: cover;"
+                >
+              {% endif %}
+
+              <div style="padding: var(--space-6);">
+                <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-4); flex-wrap: wrap;">
+                  {% for tag in article.tags %}
+                    <span style="background: var(--color-bg-alt); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                      {{ tag }}
+                    </span>
+                  {% endfor %}
+                </div>
+
+                <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--space-4);">{{ article.title }}</h2>
+                
+                <p style="color: var(--color-text-light); margin-bottom: var(--space-4); line-height: 1.6;">
+                  {{ article.excerpt_or_content | strip_html | truncate: 120 }}
+                </p>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <span>{{ article.published_at | date: '%d %b %Y' }}</span>
+                  <span style="color: var(--color-primary); font-weight: 600;">Lire plus →</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% comment %} Pagination {% endcomment %}
+      {% if paginate.pages > 1 %}
+        <div style="display: flex; justify-content: center; gap: var(--space-3); margin-top: var(--space-12);">
+          {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="btn btn-secondary">Précédent</a>
+          {% endif %}
+          
+          <span style="padding: var(--space-3) var(--space-5);">Page {{ paginate.current_page }} sur {{ paginate.pages }}</span>
+          
+          {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="btn btn-secondary">Suivant</a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    {% else %}
+      <div style="text-align: center; padding: var(--space-16) 0;">
+        <p style="font-size: var(--font-size-xl); color: var(--color-text-muted);">Aucun article pour le moment</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": []
+}
+{% endschema %}

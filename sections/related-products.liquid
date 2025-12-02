@@ -1,0 +1,41 @@
+{% if product.id and product.collections.size > 0 %}
+  {% assign collection = product.collections.first %}
+  {% assign related_products = collection.products | where_exp: "item", "item.id != product.id" | limit: 4 %}
+
+  {% if related_products.size > 0 %}
+    <div class="section-modern" style="background: var(--color-bg-alt);">
+      <div class="container-modern">
+        <h2 class="heading-lg scroll-reveal" style="text-align: center; margin-bottom: var(--space-12);">Produits Similaires</h2>
+
+        <div class="grid-modern" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-8);">
+          {% for product in related_products %}
+            <div class="card hover-lift scroll-reveal" style="padding: 0; overflow: hidden;">
+              <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+                {% if product.featured_image %}
+                  <img 
+                    src="{{ product.featured_image | image_url: width: 400 }}" 
+                    alt="{{ product.title }}"
+                    loading="lazy"
+                    style="width: 100%; aspect-ratio: 1; object-fit: cover;"
+                  >
+                {% endif %}
+                
+                <div style="padding: var(--space-5);">
+                  <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">{{ product.title }}</h3>
+                  <p style="font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary);">{{ product.price | money }}</p>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": []
+}
+{% endschema %}
