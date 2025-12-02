@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "Notre Portfolio",
+        "subheading": "Découvrez nos réalisations et les projets que nous avons menés avec succès"
+      }
+    },
+    "portfolio_full": {
+      "type": "portfolio-grid",
+      "settings": {
+        "heading": "Tous Nos Projets",
+        "subheading": "Des boutiques Shopify performantes et sur-mesure",
+        "show_view_all": false
+      }
+    },
+    "cta": {
+      "type": "call-to-action",
+      "settings": {
+        "heading": "Votre Projet Sera le Prochain?",
+        "subheading": "Contactez-nous pour discuter de vos besoins",
+        "button_text": "Démarrer Un Projet",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "portfolio_full",
+    "cta"
+  ]
+}

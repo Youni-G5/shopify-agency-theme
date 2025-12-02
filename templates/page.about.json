@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "À Propos de Nous",
+        "subheading": "Passionnés par le e-commerce et experts Shopify depuis des années"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 40
+      }
+    },
+    "stats": {
+      "type": "stats-section",
+      "settings": {
+        "background_color": "light"
+      }
+    },
+    "team": {
+      "type": "team-section",
+      "settings": {
+        "heading": "Notre Équipe",
+        "subheading": "Les experts derrière vos projets"
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "main",
+    "stats",
+    "team"
+  ]
+}
