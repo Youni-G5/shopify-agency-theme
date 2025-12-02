@@ -1,29 +1,11 @@
 {
   "sections": {
-    "page_hero": {
-      "type": "page-hero",
-      "settings": {
-        "heading": "Contactez-Nous",
-        "subheading": "Discutons de votre projet et créons ensemble la boutique de vos rêves"
-      }
-    },
-    "contact_form": {
+    "main": {
       "type": "contact-form",
-      "settings": {
-        "show_phone": true,
-        "show_company": true
-      }
-    },
-    "contact_info": {
-      "type": "contact-info",
-      "settings": {
-        "heading": "Informations de Contact"
-      }
+      "settings": {}
     }
   },
   "order": [
-    "page_hero",
-    "contact_form",
-    "contact_info"
+    "main"
   ]
 }
