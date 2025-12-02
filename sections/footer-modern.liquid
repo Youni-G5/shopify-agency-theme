@@ -1,0 +1,301 @@
+{% comment %}
+  Modern Footer with Newsletter & Social Links
+{% endcomment %}
+
+<!-- Wave Separator -->
+<div style="background: var(--color-bg-alt);">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" style="display: block; width: 100%;">
+    <path fill="var(--color-bg)" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,53,1392,42.7L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+  </svg>
+</div>
+
+<footer class="section-modern" style="background: var(--color-bg-alt);">
+  <div class="container-modern">
+    
+    <!-- Newsletter Section -->
+    {% if section.settings.show_newsletter %}
+      <div class="glass-card" style="max-width: 700px; margin: 0 auto var(--space-16); text-align: center;">
+        <h3 class="heading-lg" style="margin-bottom: var(--space-4);">
+          {{ section.settings.newsletter_heading | default: "Restez Informé" }}
+        </h3>
+        <p style="color: var(--color-text-light); margin-bottom: var(--space-6);">
+          {{ section.settings.newsletter_text | default: "Recevez nos derniers projets et conseils e-commerce" }}
+        </p>
+        
+        {% form 'customer', class: 'newsletter-form' %}
+          <div style="display: flex; gap: var(--space-3); max-width: 500px; margin: 0 auto;">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="Votre email"
+              required
+              style="flex: 1; padding: var(--space-4); border: 2px solid var(--glass-border); border-radius: var(--radius-lg); background: var(--glass-bg); font-size: var(--font-size-base);"
+            >
+            <button type="submit" class="btn btn-primary">
+              S'inscrire
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    {% endif %}
+
+    <!-- Footer Main -->
+    <div class="grid-modern grid-4" style="margin-bottom: var(--space-12);">
+      
+      <!-- Column 1: About -->
+      <div>
+        {% if section.settings.logo %}
+          <img 
+            src="{{ section.settings.logo | image_url: width: 150 }}" 
+            alt="{{ shop.name }}"
+            style="height: 40px; width: auto; margin-bottom: var(--space-4);"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="text-gradient-primary" style="font-size: var(--font-size-xl); font-weight: 800; margin-bottom: var(--space-4);">
+            {{ shop.name }}
+          </div>
+        {% endif %}
+        
+        <p style="color: var(--color-text-light); margin-bottom: var(--space-6);">
+          {{ section.settings.about_text | default: "Agence Shopify spécialisée en création de thèmes sur-mesure et optimisation e-commerce." }}
+        </p>
+        
+        <!-- Social Icons -->
+        {% if section.settings.show_social %}
+          <div style="display: flex; gap: var(--space-3);">
+            {% if section.settings.social_facebook %}
+              <a href="{{ section.settings.social_facebook }}" class="btn-icon btn-glass hover-grow" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.social_instagram %}
+              <a href="{{ section.settings.social_instagram }}" class="btn-icon btn-glass hover-grow" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.social_linkedin %}
+              <a href="{{ section.settings.social_linkedin }}" class="btn-icon btn-glass hover-grow" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.social_twitter %}
+              <a href="{{ section.settings.social_twitter }}" class="btn-icon btn-glass hover-grow" target="_blank" rel="noopener" aria-label="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Column 2-4: Menus -->
+      {% for block in section.blocks %}
+        <div>
+          <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--space-5); font-weight: 700;">
+            {{ block.settings.heading }}
+          </h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for link in linklists[block.settings.menu].links %}
+              <li style="margin-bottom: var(--space-3);">
+                <a href="{{ link.url }}" style="color: var(--color-text-light); text-decoration: none; transition: color var(--transition-base);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-light)'">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="border-top: 1px solid var(--glass-border); padding-top: var(--space-6); text-align: center;">
+      <p style="color: var(--color-text-muted); margin: 0;">
+        © {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ section.settings.copyright_text | default: "Tous droits réservés." }}
+      </p>
+      {% if section.settings.show_payment_icons %}
+        <div style="margin-top: var(--space-4); display: flex; justify-content: center; gap: var(--space-2); flex-wrap: wrap;">
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button 
+  id="scroll-to-top" 
+  class="btn-icon btn-primary" 
+  style="position: fixed; bottom: var(--space-8); right: calc(var(--space-8) + 80px); opacity: 0; pointer-events: none; transition: all var(--transition-base); z-index: var(--z-sticky);"
+  aria-label="Scroll to top"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<style>
+  .payment-icon {
+    height: 30px;
+    width: auto;
+  }
+  
+  #scroll-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-modern.grid-4 {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>
+
+<script>
+  // Scroll to top button
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollBtn = document.getElementById('scroll-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Footer Modern",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "about_text",
+      "label": "About Text",
+      "default": "Agence Shopify spécialisée en création de thèmes sur-mesure et optimisation e-commerce."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading",
+      "default": "Restez Informé"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter Text",
+      "default": "Recevez nos derniers projets et conseils e-commerce"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Icons",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_linkedin",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Tous droits réservés."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show Payment Icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Navigation"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "menu",
+        "settings": {
+          "heading": "Services"
+        }
+      },
+      {
+        "type": "menu",
+        "settings": {
+          "heading": "Entreprise"
+        }
+      },
+      {
+        "type": "menu",
+        "settings": {
+          "heading": "Ressources"
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

@@ -23,11 +23,17 @@
   {% render 'schema-json-ld' %}
 
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   {{ content_for_header }}
 
+  <!-- Modern Design System CSS -->
+  {{ 'theme-redesign.css' | asset_url | stylesheet_tag }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
   
+  <!-- Modern Animations JS -->
+  <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
   {%- liquid
@@ -40,47 +46,41 @@
     {{ body_font | font_face: font_display: 'swap' }}
 
     :root {
-      --color-primary: {{ settings.color_primary }};
-      --color-secondary: {{ settings.color_secondary }};
-      --color-accent: {{ settings.color_accent }};
-      --color-text: {{ settings.color_text }};
-      --color-background: {{ settings.color_background }};
       --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
       --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
-      --font-size-base: {{ settings.font_size_base }}px;
-    }
-
-    body {
-      font-family: var(--font-body);
-      font-size: var(--font-size-base);
-      color: var(--color-text);
-      background-color: var(--color-background);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-top: 0;
     }
   </style>
 </head>
 
-<body class="template-{{ template.name }}">
+<body class="template-{{ template.name }}" data-theme="light">
   <a class="skip-to-content-link" href="#MainContent">
     {{ 'accessibility.skip_to_text' | t }}
   </a>
 
-  {% sections 'header-group' %}
+  <!-- Modern Header -->
+  {% section 'header-modern' %}
 
   <main id="MainContent" class="content-wrapper" role="main">
     {{ content_for_layout }}
   </main>
 
-  {% sections 'footer-group' %}
+  <!-- Modern Footer -->
+  {% section 'footer-modern' %}
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
 
   <ul hidden>
     <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

@@ -1,0 +1,190 @@
+{% comment %}
+  Modern Navigation Header - Glassmorphism Fixed Nav
+{% endcomment %}
+
+<header class="nav-modern" id="site-header">
+  <nav class="nav-glass">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);">
+      
+      <!-- Logo -->
+      <div class="logo" style="flex-shrink: 0;">
+        {% if section.settings.logo %}
+          <a href="{{ routes.root_url }}" style="display: block;">
+            <img 
+              src="{{ section.settings.logo | image_url: width: 200 }}" 
+              alt="{{ shop.name }}"
+              style="height: {{ section.settings.logo_height }}px; width: auto;"
+              loading="eager"
+            >
+          </a>
+        {% else %}
+          <a href="{{ routes.root_url }}" style="text-decoration: none;">
+            <span class="text-gradient-primary" style="font-size: var(--font-size-xl); font-weight: 800;">
+              {{ shop.name }}
+            </span>
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Desktop Navigation -->
+      <ul class="nav-menu-modern" style="margin: 0; padding: 0;">
+        {% for link in linklists[section.settings.menu].links %}
+          <li style="list-style: none;">
+            <a 
+              href="{{ link.url }}" 
+              class="nav-link-modern {% if link.active %}active{% endif %}"
+            >
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <!-- CTA Button -->
+      {% if section.settings.show_cta %}
+        <div style="flex-shrink: 0;">
+          <a href="{{ section.settings.cta_link }}" class="btn btn-primary magnetic" style="padding: var(--space-3) var(--space-6);">
+            {{ section.settings.cta_text }}
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        class="mobile-menu-toggle" 
+        aria-label="Toggle menu"
+        style="display: none; background: none; border: none; cursor: pointer; padding: var(--space-2);"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" style="display: none;">
+  <div class="mobile-menu-content glass" style="position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh; padding: var(--space-8); transition: right var(--transition-slow); z-index: var(--z-modal);">
+    <button class="mobile-menu-close" style="position: absolute; top: var(--space-4); right: var(--space-4); background: none; border: none; cursor: pointer; font-size: var(--font-size-2xl);">
+      ×
+    </button>
+    
+    <nav style="margin-top: var(--space-12);">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        {% for link in linklists[section.settings.menu].links %}
+          <li style="margin-bottom: var(--space-4);">
+            <a 
+              href="{{ link.url }}" 
+              style="display: block; font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text); text-decoration: none; padding: var(--space-3) 0;"
+            >
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if section.settings.show_cta %}
+        <a href="{{ section.settings.cta_link }}" class="btn btn-primary" style="margin-top: var(--space-8); width: 100%;">
+          {{ section.settings.cta_text }}
+        </a>
+      {% endif %}
+    </nav>
+  </div>
+  <div class="mobile-menu-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.5); opacity: 0; pointer-events: none; transition: opacity var(--transition-base); z-index: {{ z-modal | minus: 1 }};"></div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .nav-menu-modern,
+    .nav-modern > div > div:last-child {
+      display: none !important;
+    }
+    
+    .mobile-menu-toggle {
+      display: block !important;
+    }
+  }
+  
+  .mobile-menu.active .mobile-menu-content {
+    right: 0;
+  }
+  
+  .mobile-menu.active .mobile-menu-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const close = document.querySelector('.mobile-menu-close');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.style.display = 'block';
+        setTimeout(() => menu.classList.add('active'), 10);
+      });
+      
+      const closeMenu = () => {
+        menu.classList.remove('active');
+        setTimeout(() => menu.style.display = 'none', 300);
+      };
+      
+      if (close) close.addEventListener('click', closeMenu);
+      if (overlay) overlay.addEventListener('click', closeMenu);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Header Modern",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo Height (px)",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Devis Gratuit"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/pages/contact"
+    }
+  ]
+}
+{% endschema %}
