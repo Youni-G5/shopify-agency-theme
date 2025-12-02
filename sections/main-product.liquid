@@ -1,0 +1,123 @@
+{% assign product = all_products[section.settings.product] | default: product %}
+
+<div class="section-modern" style="padding: var(--space-16) 0;">
+  <div class="container-modern">
+    <div style="display: grid; gap: var(--space-12); grid-template-columns: 1fr; margin-bottom: var(--space-16);">
+      
+      {% comment %} Breadcrumb {% endcomment %}
+      <nav aria-label="breadcrumb" style="font-size: var(--font-size-sm);">
+        <a href="/" style="color: var(--color-text-muted);">Accueil</a>
+        <span style="margin: 0 var(--space-2);">/</span>
+        <a href="/collections/all" style="color: var(--color-text-muted);">Produits</a>
+        <span style="margin: 0 var(--space-2);">/</span>
+        <span>{{ product.title }}</span>
+      </nav>
+
+      <div style="display: grid; gap: var(--space-12); grid-template-columns: 1fr 1fr;">
+        
+        {% comment %} Product Images {% endcomment %}
+        <div>
+          {% if product.images.size > 0 %}
+            <div class="product-images">
+              <img 
+                src="{{ product.featured_image | image_url: width: 800 }}" 
+                alt="{{ product.title }}"
+                style="width: 100%; border-radius: var(--radius-2xl); margin-bottom: var(--space-4);"
+                id="main-product-image"
+              >
+              {% if product.images.size > 1 %}
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: var(--space-3);">
+                  {% for image in product.images %}
+                    <img 
+                      src="{{ image | image_url: width: 100 }}" 
+                      alt="{{ product.title }}"
+                      style="width: 100%; cursor: pointer; border-radius: var(--radius-lg); border: 2px solid transparent;"
+                      onclick="document.getElementById('main-product-image').src='{{ image | image_url: width: 800 }}'"
+                      onmouseover="this.style.borderColor='var(--color-primary)'"
+                      onmouseout="this.style.borderColor='transparent'"
+                    >
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% comment %} Product Info {% endcomment %}
+        <div>
+          <h1 class="heading-xl" style="margin-bottom: var(--space-4);">{{ product.title }}</h1>
+          
+          {% if product.vendor != blank %}
+            <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">Par {{ product.vendor }}</p>
+          {% endif %}
+
+          <div style="margin-bottom: var(--space-6);">
+            <span class="heading-lg" style="color: var(--color-primary);">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span style="text-decoration: line-through; color: var(--color-text-muted); margin-left: var(--space-3);">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+
+          {% if product.description != blank %}
+            <div style="margin-bottom: var(--space-8); line-height: 1.7; color: var(--color-text-light);">
+              {{ product.description }}
+            </div>
+          {% endif %}
+
+          {% form 'product', product %}
+            {% unless product.has_only_default_variant %}
+              {% for option in product.options_with_values %}
+                <div style="margin-bottom: var(--space-6);">
+                  <label style="display: block; font-weight: 600; margin-bottom: var(--space-3);">{{ option.name }}</label>
+                  <select 
+                    name="options[{{ option.name }}]" 
+                    class="product-option"
+                    style="width: 100%; padding: var(--space-3); border: 2px solid var(--glass-border); border-radius: var(--radius-lg); font-size: var(--font-size-base);"
+                  >
+                    {% for value in option.values %}
+                      <option value="{{ value }}">{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            {% endunless %}
+
+            <div style="margin-bottom: var(--space-6);">
+              <label style="display: block; font-weight: 600; margin-bottom: var(--space-3);">Quantité</label>
+              <input 
+                type="number" 
+                name="quantity" 
+                value="1" 
+                min="1"
+                style="width: 100px; padding: var(--space-3); border: 2px solid var(--glass-border); border-radius: var(--radius-lg); font-size: var(--font-size-base);"
+              >
+            </div>
+
+            <button type="submit" name="add" class="btn btn-primary magnetic" style="width: 100%; padding: var(--space-5) var(--space-8);">
+              {% if product.available %}
+                Ajouter au panier
+              {% else %}
+                Épuisé
+              {% endif %}
+            </button>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .container-modern > div > div:last-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %}

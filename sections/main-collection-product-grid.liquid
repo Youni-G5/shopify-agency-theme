@@ -1,0 +1,73 @@
+{% paginate collection.products by 16 %}
+
+<div class="section-modern">
+  <div class="container-modern">
+    
+    {% comment %} Filters & Sort {% endcomment %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-8); flex-wrap: wrap; gap: var(--space-4);">
+      <p style="color: var(--color-text-muted);">{{ paginate.items }} produits</p>
+      
+      <div>
+        <label for="sort-by" style="margin-right: var(--space-3);">Trier par :</label>
+        <select id="sort-by" style="padding: var(--space-2) var(--space-4); border: 2px solid var(--glass-border); border-radius: var(--radius-lg);">
+          <option>Pertinence</option>
+          <option>Prix croissant</option>
+          <option>Prix décroissant</option>
+          <option>Nouveautés</option>
+        </select>
+      </div>
+    </div>
+
+    {% comment %} Products Grid {% endcomment %}
+    <div class="grid-modern" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-8); margin-bottom: var(--space-12);">
+      {% for product in collection.products %}
+        <div class="card hover-lift scroll-reveal" style="padding: 0; overflow: hidden;">
+          <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+            {% if product.featured_image %}
+              <img 
+                src="{{ product.featured_image | image_url: width: 400 }}" 
+                alt="{{ product.title }}"
+                loading="lazy"
+                style="width: 100%; aspect-ratio: 1; object-fit: cover;"
+              >
+            {% endif %}
+            
+            <div style="padding: var(--space-5);">
+              {% if product.vendor != blank %}
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-2);">{{ product.vendor }}</p>
+              {% endif %}
+              
+              <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">{{ product.title }}</h3>
+              
+              <p style="font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary);">{{ product.price | money }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% comment %} Pagination {% endcomment %}
+    {% if paginate.pages > 1 %}
+      <div style="display: flex; justify-content: center; gap: var(--space-3); margin-top: var(--space-12);">
+        {% if paginate.previous %}
+          <a href="{{ paginate.previous.url }}" class="btn btn-secondary">Précédent</a>
+        {% endif %}
+        
+        <span style="padding: var(--space-3) var(--space-5);">Page {{ paginate.current_page }} sur {{ paginate.pages }}</span>
+        
+        {% if paginate.next %}
+          <a href="{{ paginate.next.url }}" class="btn btn-secondary">Suivant</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": []
+}
+{% endschema %}

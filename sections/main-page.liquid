@@ -1,38 +1,48 @@
-<div class="page-wrapper section" style="min-height: 60vh;">
-  <div class="container">
-    <div class="page-content" style="max-width: 900px; margin: 0 auto;">
-      <h1 class="heading-lg fade-in-up">{{ page.title }}</h1>
-      <div class="rte fade-in-up" style="line-height: 1.8; font-size: 1.05rem;">
+<div class="section-modern">
+  <div class="container-modern" style="max-width: 900px;">
+    <article class="scroll-reveal">
+      <h1 class="heading-xl" style="margin-bottom: var(--space-8);">{{ page.title }}</h1>
+      
+      <div class="page-content" style="line-height: 1.8; color: var(--color-text-light);">
         {{ page.content }}
       </div>
-    </div>
+    </article>
   </div>
 </div>
 
+<style>
+  .page-content h2 {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-6);
+  }
+  
+  .page-content h3 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+  }
+  
+  .page-content p {
+    margin-bottom: var(--space-6);
+  }
+  
+  .page-content ul, .page-content ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-8);
+  }
+  
+  .page-content li {
+    margin-bottom: var(--space-3);
+  }
+  
+  .page-content img {
+    border-radius: var(--radius-xl);
+    margin: var(--space-8) 0;
+  }
+</style>
+
 {% schema %}
 {
-  "name": "Main Page",
-  "settings": [
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 60
-    }
-  ]
+  "name": "Page Content",
+  "settings": []
 }
 {% endschema %}
