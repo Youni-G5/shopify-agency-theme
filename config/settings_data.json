@@ -1,37 +1,39 @@
 {
   "current": {
-    "color_primary": "#2563eb",
-    "color_secondary": "#7c3aed",
-    "color_accent": "#f59e0b",
-    "color_text": "#1f2937",
-    "color_background": "#ffffff",
-    "font_heading": "assistant_n4",
-    "font_body": "assistant_n4",
-    "font_size_base": 16,
-    "logo_width": 150,
     "sections": {
-      "header": {
-        "type": "header",
+      "header-modern": {
+        "type": "header-modern",
         "settings": {
           "menu": "main-menu",
           "show_cta": true,
-          "cta_text": "Contact",
-          "cta_link": "/pages/contact"
+          "cta_text": "Devis Gratuit",
+          "cta_link": "/pages/contact",
+          "logo_height": 40
         }
       },
-      "footer": {
-        "type": "footer",
+      "footer-modern": {
+        "type": "footer-modern",
         "settings": {
-          "column_1_heading": "À Propos",
-          "column_1_text": "<p>Nous créons des expériences e-commerce exceptionnelles sur Shopify.</p>",
-          "column_2_heading": "Liens Rapides",
-          "menu_2": "footer",
-          "column_3_heading": "Contact",
-          "contact_email": "contact@example.com",
-          "contact_phone": "+33 1 23 45 67 89",
+          "show_newsletter": true,
+          "newsletter_heading": "Restez Informé",
+          "newsletter_text": "Recevez nos derniers projets et conseils e-commerce",
+          "about_text": "Agence Shopify spécialisée en création de thèmes sur-mesure et optimisation e-commerce.",
+          "show_social": true,
+          "show_payment_icons": true,
           "copyright_text": "Tous droits réservés."
-        }
+        },
+        "blocks": {
+          "footer-menu-1": {
+            "type": "menu",
+            "settings": {
+              "heading": "Navigation",
+              "menu": "footer"
+            }
+          }
+        },
+        "block_order": ["footer-menu-1"]
       }
-    }
+    },
+    "content_for_index": []
   }
 }
