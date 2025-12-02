@@ -1,111 +1,149 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero-banner",
+    "hero_modern": {
+      "type": "hero-modern",
       "settings": {
-        "heading": "Créez Votre Boutique Shopify Sur-Mesure",
-        "subheading": "Conception de thèmes personnalisés, développement sur-mesure et optimisation e-commerce pour propulser votre business en ligne.",
-        "button_text": "Démarrer Un Projet",
-        "button_link": "/pages/contact",
-        "button_secondary_text": "Voir Portfolio",
-        "button_secondary_link": "#portfolio",
-        "image_height": "large"
+        "eyebrow": "🚀 Agence Shopify Premium",
+        "heading": "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>",
+        "subheading": "Des thèmes Shopify sur-mesure qui convertissent. Design moderne, performance optimale, support premium.",
+        "primary_button_text": "Voir Notre Portfolio",
+        "primary_button_link": "/pages/portfolio",
+        "secondary_button_text": "Demander un Devis",
+        "secondary_button_link": "/pages/contact",
+        "show_stats": true,
+        "stat_1_number": 50,
+        "stat_1_label": "Projets Réussis",
+        "stat_2_number": 98,
+        "stat_2_label": "% Satisfaction",
+        "stat_3_number": 24,
+        "stat_3_label": "Heures Support"
       }
     },
-    "services": {
-      "type": "services-grid",
-      "settings": {
-        "heading": "Nos Services",
-        "subheading": "Solutions complètes pour votre succès e-commerce"
-      },
+    "features_glass": {
+      "type": "features-glassmorphism",
       "blocks": {
-        "service_1": {
-          "type": "service",
+        "feature_1": {
+          "type": "feature",
           "settings": {
-            "icon": "code",
-            "title": "Développement de Thèmes",
-            "description": "Création de thèmes Shopify personnalisés, rapides et optimisés pour la conversion."
+            "icon": "🚀",
+            "title": "Performance Optimale",
+            "description": "Sites ultra-rapides avec un score PageSpeed > 90. Optimisation poussée pour maximiser vos conversions."
           }
         },
-        "service_2": {
-          "type": "service",
+        "feature_2": {
+          "type": "feature",
           "settings": {
-            "icon": "palette",
-            "title": "Design UI/UX",
-            "description": "Interfaces modernes et intuitives pour une expérience utilisateur exceptionnelle."
+            "icon": "🎨",
+            "title": "Design Unique",
+            "description": "Identité visuelle forte et mémorable. Chaque projet est conçu sur-mesure pour refléter votre marque."
           }
         },
-        "service_3": {
-          "type": "service",
+        "feature_3": {
+          "type": "feature",
           "settings": {
-            "icon": "rocket",
-            "title": "Optimisation Performance",
-            "description": "Amélioration des temps de chargement et de la vitesse pour un meilleur SEO."
+            "icon": "💎",
+            "title": "Code Premium",
+            "description": "Architecture Shopify 2.0, code propre et maintenable. Conformité aux standards les plus élevés."
           }
         },
-        "service_4": {
-          "type": "service",
+        "feature_4": {
+          "type": "feature",
           "settings": {
-            "icon": "mobile",
-            "title": "Responsive Design",
-            "description": "Sites parfaitement adaptés à tous les appareils et tailles d'écran."
+            "icon": "📱",
+            "title": "Mobile-First",
+            "description": "Expérience impeccable sur tous les appareils. 70% de vos clients sont sur mobile."
           }
         },
-        "service_5": {
-          "type": "service",
+        "feature_5": {
+          "type": "feature",
           "settings": {
-            "icon": "plugin",
-            "title": "Intégrations Apps",
-            "description": "Connexion et configuration d'applications tierces pour étendre les fonctionnalités."
+            "icon": "🔍",
+            "title": "SEO Optimisé",
+            "description": "Structure technique parfaite pour Google. Meta tags, schema markup, vitesse optimisée."
           }
         },
-        "service_6": {
-          "type": "service",
+        "feature_6": {
+          "type": "feature",
           "settings": {
-            "icon": "support",
-            "title": "Support & Maintenance",
-            "description": "Accompagnement continu et mises à jour pour garantir la performance."
+            "icon": "💬",
+            "title": "Support Premium",
+            "description": "Accompagnement personnalisé et réactif. Formation complète pour gérer votre boutique en toute autonomie."
           }
         }
       },
       "block_order": [
-        "service_1",
-        "service_2",
-        "service_3",
-        "service_4",
-        "service_5",
-        "service_6"
-      ]
-    },
-    "portfolio": {
-      "type": "portfolio-grid",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6"
+      ],
       "settings": {
+        "eyebrow": "✨ Nos Avantages",
+        "heading": "Pourquoi Nous Choisir",
+        "subheading": "Une expertise reconnue au service de votre réussite e-commerce"
+      }
+    },
+    "portfolio_modern": {
+      "type": "portfolio-modern",
+      "blocks": {
+        "project_1": {
+          "type": "project",
+          "settings": {
+            "category": "E-commerce Mode",
+            "title": "Boutique Mode Luxe",
+            "description": "Site e-commerce haut de gamme avec expérience d'achat premium. +150% de conversions en 6 mois.",
+            "tags": "Shopify, Design, UX/UI, Performance"
+          }
+        },
+        "project_2": {
+          "type": "project",
+          "settings": {
+            "category": "Marketplace",
+            "title": "Marketplace Tech",
+            "description": "Plateforme multi-vendeurs avec gestion avancée des commandes et paiements sécurisés.",
+            "tags": "Shopify Plus, Multi-vendor, API"
+          }
+        },
+        "project_3": {
+          "type": "project",
+          "settings": {
+            "category": "Beauté & Bien-être",
+            "title": "Cosmétiques Bio",
+            "description": "Boutique éco-responsable avec système d'abonnement et programme de fidélité intégré.",
+            "tags": "Shopify, Abonnement, SEO"
+          }
+        },
+        "project_4": {
+          "type": "project",
+          "settings": {
+            "category": "Bijouterie",
+            "title": "Joaillerie Premium",
+            "description": "Site vitrine et e-shop avec galerie immersive et configurateur de bijoux personnalisés.",
+            "tags": "Design, 3D, Personnalisation"
+          }
+        }
+      },
+      "block_order": [
+        "project_1",
+        "project_2",
+        "project_3",
+        "project_4"
+      ],
+      "settings": {
+        "eyebrow": "💼 Portfolio",
         "heading": "Nos Réalisations",
-        "subheading": "Découvrez quelques-uns de nos projets récents"
-      }
-    },
-    "testimonials": {
-      "type": "testimonials-slider",
-      "settings": {
-        "heading": "Ce Que Disent Nos Clients",
-        "subheading": "Leurs retours d'expérience"
-      }
-    },
-    "cta": {
-      "type": "call-to-action",
-      "settings": {
-        "heading": "Prêt à Lancer Votre Projet?",
-        "subheading": "Discutons de vos besoins et créons ensemble la boutique de vos rêves.",
-        "button_text": "Demander Un Devis",
-        "button_link": "/pages/contact"
+        "subheading": "Découvrez quelques-uns de nos projets récents et les résultats obtenus",
+        "show_view_all": true,
+        "view_all_text": "Voir Tous Nos Projets",
+        "view_all_link": "/pages/portfolio"
       }
     }
   },
   "order": [
-    "hero",
-    "services",
-    "portfolio",
-    "testimonials",
-    "cta"
+    "hero_modern",
+    "features_glass",
+    "portfolio_modern"
   ]
 }
