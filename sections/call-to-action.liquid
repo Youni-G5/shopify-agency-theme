@@ -1,0 +1,59 @@
+<section class="cta-section section" data-section-id="{{ section.id }}" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: white; text-align: center;">
+  <div class="container">
+    <div class="cta-content fade-in-up" style="max-width: 700px; margin: 0 auto;">
+      {% if section.settings.heading != blank %}
+        <h2 class="heading-lg" style="color: white; margin-bottom: 1rem;">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 2rem; line-height: 1.6;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn" style="background: white; color: var(--color-primary); border-color: white; font-size: 1.1rem; padding: 16px 40px;">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Call to Action",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to Get Started?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Let's build something amazing together"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action"
+    }
+  ]
+}
+{% endschema %}
