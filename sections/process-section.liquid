@@ -1,0 +1,162 @@
+<section class="process-section section" data-section-id="{{ section.id }}" style="background-color: #f9fafb;">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="heading-lg text-center fade-in-up">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="text-center text-muted fade-in-up" style="max-width: 600px; margin: 0 auto 4rem; font-size: 1.1rem;">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+
+    <div class="process-timeline" style="position: relative; max-width: 1000px; margin: 0 auto;">
+      {% for block in section.blocks %}
+        <div class="process-step fade-in-up" {{ block.shopify_attributes }} style="display: flex; gap: 2rem; margin-bottom: 3rem; position: relative;">
+          <div class="step-number" style="flex-shrink: 0; width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; position: relative; z-index: 2;">
+            {{ forloop.index }}
+          </div>
+
+          {% if forloop.last == false %}
+            <div style="position: absolute; left: 40px; top: 80px; width: 2px; height: calc(100% + 3rem); background: linear-gradient(180deg, var(--color-primary), var(--color-secondary)); opacity: 0.3; z-index: 1;"></div>
+          {% endif %}
+
+          <div class="step-content" style="flex: 1; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);">
+            <h3 class="heading-md" style="margin-bottom: 0.5rem;">{{ block.settings.title }}</h3>
+            
+            {% if block.settings.duration != blank %}
+              <p style="color: var(--color-primary); font-weight: 600; margin-bottom: 1rem; font-size: 0.95rem;">
+                ⏱️ {{ block.settings.duration }}
+              </p>
+            {% endif %}
+
+            <p style="color: #6b7280; line-height: 1.8; margin-bottom: 1.5rem;">
+              {{ block.settings.description }}
+            </p>
+
+            {% if block.settings.deliverables != blank %}
+              <div style="background: #f9fafb; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                <p style="font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">📦 Livrables :</p>
+                <p style="color: #6b7280; margin: 0; font-size: 0.9rem;">{{ block.settings.deliverables }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    .process-step {
+      flex-direction: column !important;
+    }
+
+    .step-number {
+      width: 60px !important;
+      height: 60px !important;
+      font-size: 1.5rem !important;
+    }
+
+    .process-timeline > div:not(:last-child)::before {
+      left: 30px !important;
+      top: 60px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Process Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Notre Processus"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Une méthodologie éprouvée pour garantir votre succès"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Découverte"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "Semaine 1"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Nous analysons vos besoins, vos objectifs et votre marché cible pour définir la stratégie parfaite."
+        },
+        {
+          "type": "text",
+          "id": "deliverables",
+          "label": "Deliverables",
+          "default": "Brief projet, stratégie e-commerce, planning détaillé"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process Section",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Découverte",
+            "duration": "Semaine 1",
+            "description": "Nous analysons vos besoins, vos objectifs et votre marché cible.",
+            "deliverables": "Brief projet, stratégie e-commerce"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Design",
+            "duration": "Semaines 2-3",
+            "description": "Création des maquettes et validation du design avec vous.",
+            "deliverables": "Maquettes desktop/mobile, guide de style"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Développement",
+            "duration": "Semaines 4-6",
+            "description": "Développement du thème et intégration des fonctionnalités.",
+            "deliverables": "Thème fonctionnel, tests complets"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Lancement",
+            "duration": "Semaine 7",
+            "description": "Mise en ligne, formation et accompagnement.",
+            "deliverables": "Site en production, documentation, formation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

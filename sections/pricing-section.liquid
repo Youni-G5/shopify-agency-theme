@@ -1,0 +1,157 @@
+<section class="pricing-section section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="heading-lg text-center fade-in-up">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="text-center text-muted fade-in-up" style="max-width: 600px; margin: 0 auto 3rem; font-size: 1.1rem;">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+
+    <div class="grid grid-cols-1 grid-cols-3">
+      {% for block in section.blocks %}
+        <div class="pricing-card card fade-in-up" {{ block.shopify_attributes }} {% if block.settings.featured %}style="border: 3px solid var(--color-primary); position: relative;"{% endif %}>
+          {% if block.settings.featured %}
+            <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--color-primary); color: white; padding: 5px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">
+              POPULAIRE
+            </div>
+          {% endif %}
+
+          <div class="card-content" style="text-align: center; padding: 2.5rem 2rem;">
+            <h3 class="heading-md" style="margin-bottom: 0.5rem;">{{ block.settings.plan_name }}</h3>
+            
+            {% if block.settings.description != blank %}
+              <p style="color: #6b7280; margin-bottom: 2rem;">{{ block.settings.description }}</p>
+            {% endif %}
+
+            <div style="margin-bottom: 2rem;">
+              <span style="font-size: 3rem; font-weight: 700; color: var(--color-primary);">{{ block.settings.price }}</span>
+              {% if block.settings.price_suffix != blank %}
+                <span style="color: #6b7280; font-size: 1rem;">{{ block.settings.price_suffix }}</span>
+              {% endif %}
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left;">
+              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li style="padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; display: flex; align-items: start;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary); flex-shrink: 0; margin-right: 0.75rem; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>{{ feature }}</span>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            <a href="{{ block.settings.button_link }}" class="btn {% if block.settings.featured %}btn-primary{% else %}btn-secondary{% endif %}" style="width: 100%;">
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_note %}
+      <p class="text-center text-muted" style="margin-top: 3rem; font-size: 0.95rem;">
+        {{ section.settings.note_text }}
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pricing Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Nos Tarifs"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Choisissez le forfait qui correspond à vos besoins"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_note",
+      "label": "Show Note",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "Tous les prix sont en euros HT. Devis personnalisé disponible sur demande."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Pricing Plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "plan_name",
+          "label": "Plan Name",
+          "default": "Basic"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Pour les petits projets"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "1 500€"
+        },
+        {
+          "type": "text",
+          "id": "price_suffix",
+          "label": "Price Suffix",
+          "default": "/projet"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features (one per line)",
+          "default": "Thème responsive\n5 pages personnalisées\n1 mois de support\nOptimisation SEO de base\nFormation incluse"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured Plan",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Choisir ce Plan"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link",
+          "default": "/pages/contact"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Section"
+    }
+  ]
+}
+{% endschema %}

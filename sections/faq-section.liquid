@@ -1,0 +1,161 @@
+<section class="faq-section section" data-section-id="{{ section.id }}" {% if section.settings.background_color == 'light' %}style="background-color: #f9fafb;"{% endif %}>
+  <div class="container" style="max-width: 900px;">
+    {% if section.settings.heading != blank %}
+      <h2 class="heading-lg text-center fade-in-up">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="text-center text-muted fade-in-up" style="max-width: 600px; margin: 0 auto 3rem; font-size: 1.1rem;">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+
+    <div class="faq-accordion">
+      {% for block in section.blocks %}
+        <div class="faq-item fade-in-up" {{ block.shopify_attributes }} style="border: 2px solid #e5e7eb; border-radius: 12px; margin-bottom: 1rem; overflow: hidden;">
+          <button 
+            class="faq-question" 
+            onclick="this.parentElement.classList.toggle('active')"
+            style="width: 100%; padding: 1.5rem; text-align: left; background: white; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; font-weight: 600; transition: background-color 0.3s;"
+          >
+            <span>{{ block.settings.question }}</span>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;">
+            <div style="padding: 0 1.5rem 1.5rem 1.5rem; color: #6b7280; line-height: 1.8;">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_contact_cta %}
+      <div class="text-center" style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: 12px;">
+        <p style="color: white; font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: 500;">
+          {{ section.settings.cta_text }}
+        </p>
+        <a href="{{ section.settings.cta_link }}" class="btn" style="background: white; color: var(--color-primary); border-color: white;">
+          {{ section.settings.cta_button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .faq-item.active .faq-question {
+    background-color: #f9fafb;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+    padding-top: 0;
+  }
+
+  .faq-question:hover {
+    background-color: #f9fafb;
+  }
+</style>
+
+<script>
+  // Auto-scroll to opened FAQ
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', function() {
+      if (this.parentElement.classList.contains('active')) {
+        setTimeout(() => {
+          this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 300);
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Questions Fréquentes"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Trouvez rapidement des réponses à vos questions"
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "label": "Background Color",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "light", "label": "Light Gray" }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "header",
+      "content": "Contact CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_cta",
+      "label": "Show Contact CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Vous ne trouvez pas la réponse à votre question ?"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "Contactez-Nous"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/pages/contact"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Combien de temps prend un projet ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Un projet de thème Shopify personnalisé prend généralement entre 4 et 6 semaines, selon la complexité et vos besoins spécifiques.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section"
+    }
+  ]
+}
+{% endschema %}

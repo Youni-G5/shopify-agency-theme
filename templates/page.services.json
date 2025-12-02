@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "Nos Services",
+        "subheading": "Des solutions complètes pour créer, optimiser et faire croître votre boutique Shopify"
+      }
+    },
+    "services": {
+      "type": "services-grid",
+      "settings": {
+        "heading": "Ce Que Nous Proposons",
+        "subheading": "Une expertise complète pour votre réussite e-commerce"
+      }
+    },
+    "pricing": {
+      "type": "pricing-section",
+      "settings": {
+        "heading": "Nos Tarifs",
+        "subheading": "Des forfaits adaptés à chaque budget et besoin",
+        "show_note": true,
+        "note_text": "Tous les prix sont en euros HT. Devis personnalisé disponible sur demande."
+      }
+    },
+    "process": {
+      "type": "process-section",
+      "settings": {
+        "heading": "Notre Processus",
+        "subheading": "Une méthodologie éprouvée pour garantir votre succès"
+      }
+    },
+    "faq": {
+      "type": "faq-section",
+      "settings": {
+        "heading": "Questions Fréquentes",
+        "subheading": "Trouvez rapidement des réponses à vos questions",
+        "show_contact_cta": true
+      }
+    },
+    "cta": {
+      "type": "call-to-action",
+      "settings": {
+        "heading": "Prêt à Démarrer Votre Projet?",
+        "subheading": "Contactez-nous pour une consultation gratuite et un devis personnalisé",
+        "button_text": "Demander Un Devis Gratuit",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "services",
+    "pricing",
+    "process",
+    "faq",
+    "cta"
+  ]
+}

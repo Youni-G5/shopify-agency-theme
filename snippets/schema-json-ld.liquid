@@ -1,0 +1,159 @@
+{% comment %}
+  Structured Data (JSON-LD) for SEO
+  Helps search engines understand your content better
+{% endcomment %}
+
+{% liquid
+  assign shop_name = shop.name | escape
+  assign shop_url = shop.url
+  assign shop_logo = settings.logo | default: '' | image_url: width: 600
+%}
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop_name | json }},
+  "url": {{ shop_url | json }},
+  {% if shop_logo != blank %}
+  "logo": {{ shop_logo | json }},
+  {% endif %}
+  {% if settings.social_facebook != blank or settings.social_instagram != blank or settings.social_linkedin != blank or settings.social_twitter != blank %}
+  "sameAs": [
+    {% if settings.social_facebook != blank %}{{ settings.social_facebook | json }}{% if settings.social_instagram != blank or settings.social_linkedin != blank or settings.social_twitter != blank %},{% endif %}{% endif %}
+    {% if settings.social_instagram != blank %}{{ settings.social_instagram | json }}{% if settings.social_linkedin != blank or settings.social_twitter != blank %},{% endif %}{% endif %}
+    {% if settings.social_linkedin != blank %}{{ settings.social_linkedin | json }}{% if settings.social_twitter != blank %},{% endif %}{% endif %}
+    {% if settings.social_twitter != blank %}{{ settings.social_twitter | json }}{% endif %}
+  ],
+  {% endif %}
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "contact@example.com"
+  }
+}
+</script>
+
+<!-- Website Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop_name | json }},
+  "url": {{ shop_url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ shop_url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{%- if template == 'article' -%}
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }}
+  },
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  {% if article.image %}
+  "image": {{ article.image | image_url: width: 1200 | json }},
+  {% endif %}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop_name | json }},
+    {% if shop_logo != blank %}
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ shop_logo | json }}
+    }
+    {% endif %}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ article.url | prepend: shop_url | json }}
+  },
+  "description": {{ article.excerpt_or_content | strip_html | truncatewords: 50 | json }}
+}
+</script>
+{%- endif -%}
+
+{%- if template == 'page' and page.handle == 'contact' -%}
+<!-- Contact Page Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Us",
+  "url": {{ page.url | prepend: shop_url | json }},
+  "description": "Get in touch with us for your Shopify project"
+}
+</script>
+{%- endif -%}
+
+{%- if template == 'page' and page.handle == 'about' -%}
+<!-- About Page Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": {{ page.title | json }},
+  "url": {{ page.url | prepend: shop_url | json }},
+  "description": {{ page.content | strip_html | truncatewords: 50 | json }},
+  "mainEntity": {
+    "@type": "Organization",
+    "name": {{ shop_name | json }},
+    "description": "Professional Shopify theme development and e-commerce solutions"
+  }
+}
+</script>
+{%- endif -%}
+
+<!-- Breadcrumb Schema -->
+{%- unless template == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ shop_url | json }}
+    }
+    {%- if template contains 'page' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.title | json }},
+      "item": {{ page.url | prepend: shop_url | json }}
+    }
+    {%- elsif template contains 'article' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": {{ blog.url | prepend: shop_url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ article.url | prepend: shop_url | json }}
+    }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endunless -%}
