@@ -1,0 +1,184 @@
+{% liquid
+  assign logo_width = settings.logo_width | default: 150
+%}
+
+<header class="site-header" data-section-id="{{ section.id }}" data-section-type="header">
+  <div class="container">
+    <div class="header-wrapper">
+      <!-- Logo -->
+      <div class="site-logo">
+        {% if settings.logo != blank %}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            {{ settings.logo | image_url: width: logo_width | image_tag:
+              loading: 'eager',
+              width: logo_width,
+              alt: shop.name
+            }}
+          </a>
+        {% else %}
+          <a href="{{ routes.root_url }}" class="logo-link logo-text">
+            <h1 style="margin: 0; font-size: 1.5rem;">{{ shop.name }}</h1>
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop hide-mobile" aria-label="Primary navigation">
+        <ul class="nav-menu">
+          {% for link in section.settings.menu.links %}
+            <li class="nav-item">
+              <a href="{{ link.url }}" class="nav-link" {% if link.active %}aria-current="page"{% endif %}>
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <!-- CTA Button -->
+      {% if section.settings.show_cta %}
+        <div class="header-cta hide-mobile">
+          <a href="{{ section.settings.cta_link }}" class="btn btn-primary">
+            {{ section.settings.cta_text }}
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle hide-desktop" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu hide-desktop">
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-nav-menu">
+        {% for link in section.settings.menu.links %}
+          <li class="mobile-nav-item">
+            <a href="{{ link.url }}" class="mobile-nav-link" {% if link.active %}aria-current="page"{% endif %}>
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+        {% if section.settings.show_cta %}
+          <li class="mobile-nav-item mobile-cta">
+            <a href="{{ section.settings.cta_link }}" class="btn btn-primary" style="width: 100%;">
+              {{ section.settings.cta_text }}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-menu.active {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .mobile-nav-menu {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+  }
+
+  .mobile-nav-item {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .mobile-cta {
+    border: none;
+    margin-top: 15px;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Contact"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/pages/contact"
+    }
+  ]
+}
+{% endschema %}

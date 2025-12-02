@@ -1,0 +1,212 @@
+<footer class="site-footer" data-section-id="{{ section.id }}" data-section-type="footer">
+  <div class="container">
+    <div class="footer-content">
+      <!-- Footer Column 1: About -->
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.column_1_heading }}</h3>
+        <div class="footer-text">
+          {{ section.settings.column_1_text }}
+        </div>
+        
+        <!-- Social Links -->
+        {% if settings.social_facebook != blank or settings.social_instagram != blank or settings.social_linkedin != blank or settings.social_twitter != blank or settings.social_tiktok != blank %}
+          <div class="social-links" style="margin-top: 20px;">
+            {% if settings.social_facebook != blank %}
+              <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_instagram != blank %}
+              <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_linkedin != blank %}
+              <a href="{{ settings.social_linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_twitter != blank %}
+              <a href="{{ settings.social_twitter }}" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.85.38-1.78.64-2.75.76a4.8 4.8 0 0 0 2.1-2.66c-.92.55-1.95.95-3.04 1.17A4.76 4.76 0 0 0 11.77 9.8c0 .37.04.74.13 1.1-3.95-.2-7.45-2.1-9.8-4.97a4.76 4.76 0 0 0 1.48 6.36 4.73 4.73 0 0 1-2.16-.6v.07c0 2.3 1.64 4.22 3.82 4.66a4.76 4.76 0 0 1-2.15.08 4.77 4.77 0 0 0 4.45 3.3A9.55 9.55 0 0 1 2 18.13a13.5 13.5 0 0 0 7.29 2.14c8.75 0 13.54-7.25 13.54-13.54 0-.2 0-.41-.02-.61A9.66 9.66 0 0 0 24 4.56a9.45 9.45 0 0 1-2.72.75Z"/></svg>
+              </a>
+            {% endif %}
+            {% if settings.social_tiktok != blank %}
+              <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok" class="social-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Footer Column 2: Links -->
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.column_2_heading }}</h3>
+        {% if section.settings.menu_2 != blank %}
+          <ul class="footer-menu">
+            {% for link in section.settings.menu_2.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- Footer Column 3: Contact -->
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.column_3_heading }}</h3>
+        <div class="footer-contact">
+          {% if section.settings.contact_email != blank %}
+            <p>
+              <strong>Email:</strong><br>
+              <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a>
+            </p>
+          {% endif %}
+          {% if section.settings.contact_phone != blank %}
+            <p>
+              <strong>Téléphone:</strong><br>
+              <a href="tel:{{ section.settings.contact_phone }}">{{ section.settings.contact_phone }}</a>
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.copyright_text }}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-heading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .footer-text {
+    line-height: 1.8;
+    opacity: 0.9;
+  }
+
+  .footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-menu li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-menu a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-menu a:hover {
+    opacity: 1;
+  }
+
+  .footer-contact a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .footer-contact a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-link {
+    color: white;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .social-link:hover {
+    opacity: 1;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "text",
+      "id": "column_1_heading",
+      "label": "Heading",
+      "default": "À Propos"
+    },
+    {
+      "type": "richtext",
+      "id": "column_1_text",
+      "label": "Text",
+      "default": "<p>Nous créons des expériences e-commerce exceptionnelles sur Shopify.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "Heading",
+      "default": "Liens Rapides"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu",
+      "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "text",
+      "id": "column_3_heading",
+      "label": "Heading",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Tous droits réservés."
+    }
+  ]
+}
+{% endschema %}

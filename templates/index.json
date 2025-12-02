@@ -1,0 +1,111 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Créez Votre Boutique Shopify Sur-Mesure",
+        "subheading": "Conception de thèmes personnalisés, développement sur-mesure et optimisation e-commerce pour propulser votre business en ligne.",
+        "button_text": "Démarrer Un Projet",
+        "button_link": "/pages/contact",
+        "button_secondary_text": "Voir Portfolio",
+        "button_secondary_link": "#portfolio",
+        "image_height": "large"
+      }
+    },
+    "services": {
+      "type": "services-grid",
+      "settings": {
+        "heading": "Nos Services",
+        "subheading": "Solutions complètes pour votre succès e-commerce"
+      },
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "icon": "code",
+            "title": "Développement de Thèmes",
+            "description": "Création de thèmes Shopify personnalisés, rapides et optimisés pour la conversion."
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "icon": "palette",
+            "title": "Design UI/UX",
+            "description": "Interfaces modernes et intuitives pour une expérience utilisateur exceptionnelle."
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "icon": "rocket",
+            "title": "Optimisation Performance",
+            "description": "Amélioration des temps de chargement et de la vitesse pour un meilleur SEO."
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "icon": "mobile",
+            "title": "Responsive Design",
+            "description": "Sites parfaitement adaptés à tous les appareils et tailles d'écran."
+          }
+        },
+        "service_5": {
+          "type": "service",
+          "settings": {
+            "icon": "plugin",
+            "title": "Intégrations Apps",
+            "description": "Connexion et configuration d'applications tierces pour étendre les fonctionnalités."
+          }
+        },
+        "service_6": {
+          "type": "service",
+          "settings": {
+            "icon": "support",
+            "title": "Support & Maintenance",
+            "description": "Accompagnement continu et mises à jour pour garantir la performance."
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4",
+        "service_5",
+        "service_6"
+      ]
+    },
+    "portfolio": {
+      "type": "portfolio-grid",
+      "settings": {
+        "heading": "Nos Réalisations",
+        "subheading": "Découvrez quelques-uns de nos projets récents"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-slider",
+      "settings": {
+        "heading": "Ce Que Disent Nos Clients",
+        "subheading": "Leurs retours d'expérience"
+      }
+    },
+    "cta": {
+      "type": "call-to-action",
+      "settings": {
+        "heading": "Prêt à Lancer Votre Projet?",
+        "subheading": "Discutons de vos besoins et créons ensemble la boutique de vos rêves.",
+        "button_text": "Demander Un Devis",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "services",
+    "portfolio",
+    "testimonials",
+    "cta"
+  ]
+}
