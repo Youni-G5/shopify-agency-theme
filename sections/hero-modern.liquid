@@ -30,7 +30,7 @@
 
     <!-- CTA Buttons -->
     <div class="scroll-reveal" style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-      {% if section.settings.primary_button_text %}
+      {% if section.settings.primary_button_text != blank and section.settings.primary_button_link != blank %}
         <a href="{{ section.settings.primary_button_link }}" class="btn btn-primary magnetic">
           {{ section.settings.primary_button_text }}
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
         </a>
       {% endif %}
 
-      {% if section.settings.secondary_button_text %}
+      {% if section.settings.secondary_button_text != blank and section.settings.secondary_button_link != blank %}
         <a href="{{ section.settings.secondary_button_link }}" class="btn btn-glass magnetic">
           {{ section.settings.secondary_button_text }}
         </a>
@@ -109,8 +109,7 @@
     {
       "type": "url",
       "id": "primary_button_link",
-      "label": "Primary Button Link",
-      "default": "/pages/portfolio"
+      "label": "Primary Button Link"
     },
     {
       "type": "text",
@@ -121,8 +120,7 @@
     {
       "type": "url",
       "id": "secondary_button_link",
-      "label": "Secondary Button Link",
-      "default": "/pages/contact"
+      "label": "Secondary Button Link"
     },
     {
       "type": "checkbox",

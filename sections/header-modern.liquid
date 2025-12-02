@@ -41,7 +41,7 @@
       </ul>
 
       <!-- CTA Button -->
-      {% if section.settings.show_cta %}
+      {% if section.settings.show_cta and section.settings.cta_link != blank %}
         <div style="flex-shrink: 0;">
           <a href="{{ section.settings.cta_link }}" class="btn btn-primary magnetic" style="padding: var(--space-3) var(--space-6);">
             {{ section.settings.cta_text }}
@@ -86,7 +86,7 @@
         {% endfor %}
       </ul>
 
-      {% if section.settings.show_cta %}
+      {% if section.settings.show_cta and section.settings.cta_link != blank %}
         <a href="{{ section.settings.cta_link }}" class="btn btn-primary" style="margin-top: var(--space-8); width: 100%;">
           {{ section.settings.cta_text }}
         </a>
@@ -182,8 +182,7 @@
     {
       "type": "url",
       "id": "cta_link",
-      "label": "CTA Link",
-      "default": "/pages/contact"
+      "label": "CTA Link"
     }
   ]
 }

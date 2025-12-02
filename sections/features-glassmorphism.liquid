@@ -45,7 +45,7 @@
           </p>
 
           <!-- Optional Link -->
-          {% if block.settings.link_text %}
+          {% if block.settings.link_text != blank and block.settings.link != blank %}
             <a href="{{ block.settings.link }}" style="display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-primary); font-weight: 600; margin-top: var(--space-4); text-decoration: none;">
               {{ block.settings.link_text }}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
