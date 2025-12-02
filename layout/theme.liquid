@@ -2,105 +2,75 @@
 <html lang="{{ request.locale.iso_code }}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#1a2b4a">
   
-  <title>
-    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>
+  <title>{{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags.join(', ') }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
 
   {% if page_description %}
     <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
 
-  <link rel="canonical" href="{{ canonical_url }}">
-
-  {%- if settings.favicon != blank -%}
-    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-  {%- endif -%}
-
   {% render 'meta-tags' %}
   {% render 'schema-json-ld' %}
 
-  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+  <link rel="canonical" href="{{ canonical_url }}">
+
   {{ content_for_header }}
 
-  <!-- Modern Design System CSS -->
-  {{ 'theme-redesign.css' | asset_url | stylesheet_tag }}
-  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <!-- Professional Design System CSS -->
+  {{ 'theme-professional.css' | asset_url | stylesheet_tag }}
   
-  <!-- Modern Animations JS -->
-  <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
-
-  {%- liquid
-    assign heading_font = settings.font_heading
-    assign body_font = settings.font_body
-  -%}
-
-  <style>
-    {{ heading_font | font_face: font_display: 'swap' }}
-    {{ body_font | font_face: font_display: 'swap' }}
-
-    :root {
-      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
-    }
-  </style>
+  <!-- Legacy CSS for compatibility -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 
-<body class="template-{{ template.name }}" data-theme="light">
-  <a class="skip-to-content-link" href="#MainContent">
-    {{ 'accessibility.skip_to_text' | t }}
-  </a>
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+  <a href="#main-content" class="skip-to-content">{{ 'accessibility.skip_to_content' | t }}</a>
 
-  <!-- Modern Header -->
-  {% section 'header-modern' %}
+  {% sections 'header-group' %}
 
-  <main id="MainContent" class="content-wrapper" role="main">
+  <main id="main-content" role="main" style="padding-top: 80px;">
     {{ content_for_layout }}
   </main>
 
-  <!-- Modern Footer -->
-  {% section 'footer-modern' %}
+  {% sections 'footer-group' %}
 
-  <!-- Dark Mode Toggle -->
-  <button class="dark-mode-toggle" aria-label="Toggle dark mode">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </button>
-
-  <ul hidden>
-    <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
-    <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
-  </ul>
-
+  <!-- Professional JavaScript -->
   <script>
-    window.shopUrl = '{{ request.origin }}';
-    window.routes = {
-      cart_add_url: '{{ routes.cart_add_url }}',
-      cart_change_url: '{{ routes.cart_change_url }}',
-      cart_update_url: '{{ routes.cart_update_url }}',
-      cart_url: '{{ routes.cart_url }}',
-      predictive_search_url: '{{ routes.predictive_search_url }}'
+    // Smooth scroll reveal on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     };
 
-    window.cartStrings = {
-      error: `{{ 'sections.cart.cart_error' | t }}`,
-      quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
-    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Observe all scroll reveal elements
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Header scroll effect
+      const header = document.querySelector('.header-professional');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
