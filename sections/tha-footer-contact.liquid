@@ -1,0 +1,157 @@
+{% comment %}
+  THA ASCEND - Footer with Integrated Contact Form
+  Combined footer and contact section
+{% endcomment %}
+
+<footer class="border-t" style="background: #020202; padding-top: 6rem; padding-bottom: 2rem;">
+  <div class="container">
+    
+    {%- comment -%} Contact Section {%- endcomment -%}
+    <div class="grid grid-cols-2" style="gap: 4rem; margin-bottom: 6rem;">
+      
+      {%- comment -%} Left: Contact Info {%- endcomment -%}
+      <div>
+        <h2 class="heading-lg" style="line-height: 1; margin-bottom: 2rem;">
+          {{ section.settings.contact_heading | default: 'READY TO<br>DOMINATE?' }}
+        </h2>
+        <p class="text-muted" style="font-size: 1.125rem; max-width: 450px; margin-bottom: 2rem;">
+          {{ section.settings.contact_description }}
+        </p>
+        {% if section.settings.show_availability %}
+        <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--color-accent); font-family: var(--font-mono); font-size: 1.125rem;">
+          <span style="width: 0.5rem; height: 0.5rem; background: var(--color-success); border-radius: 50%;" class="animate-pulse-slow"></span>
+          {{ section.settings.availability_text }}
+        </div>
+        {% endif %}
+      </div>
+
+      {%- comment -%} Right: Contact Form {%- endcomment -%}
+      <div>
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <div style="padding: 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--color-success); border-radius: 0.5rem; margin-bottom: 1.5rem; color: var(--color-success);">
+              Merci ! Nous vous répondrons sous 24h.
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 0.5rem; margin-bottom: 1.5rem; color: #ef4444;">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="grid grid-cols-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Nom</label>
+              <input type="text" name="contact[name]" class="form-input" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Site Web</label>
+              <input type="url" name="contact[website]" class="form-input" placeholder="https://">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="contact[email]" class="form-input" placeholder="pro@domaine.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Budget</label>
+            <select name="contact[budget]" class="form-select">
+              <option>1,500€ - 3,000€</option>
+              <option>3,000€ - 10,000€</option>
+              <option>10,000€ +</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-white" style="width: 100%; text-align: center;">
+            Envoyer la demande
+          </button>
+        {% endform %}
+      </div>
+    </div>
+
+    {%- comment -%} Footer Bottom {%- endcomment -%}
+    <div style="border-top: 1px solid var(--color-border); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.75rem; color: var(--color-muted); font-family: var(--font-mono);">
+      <div>{{ section.settings.copyright | default: '© 2024 THA ASCEND INC. // ALL SYSTEMS OPERATIONAL.' }}</div>
+      
+      {%- comment -%} Social Links {%- endcomment -%}
+      <div style="display: flex; gap: 1.5rem;">
+        {% if section.settings.twitter_url != blank %}
+        <a href="{{ section.settings.twitter_url }}" style="color: var(--color-muted); text-decoration: none; transition: color 0.3s;" class="hover-white">TWITTER_X</a>
+        {% endif %}
+        {% if section.settings.linkedin_url != blank %}
+        <a href="{{ section.settings.linkedin_url }}" style="color: var(--color-muted); text-decoration: none; transition: color 0.3s;" class="hover-white">LINKEDIN</a>
+        {% endif %}
+        {% if section.settings.github_url != blank %}
+        <a href="{{ section.settings.github_url }}" style="color: var(--color-muted); text-decoration: none; transition: color 0.3s;" class="hover-white">GITHUB</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .hover-white:hover {
+    color: white !important;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Footer + Contact",
+  "settings": [
+    {
+      "type": "html",
+      "id": "contact_heading",
+      "label": "Contact Heading (HTML)",
+      "default": "READY TO<br>DOMINATE?"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_description",
+      "label": "Contact Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability",
+      "label": "Show Availability Status",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "availability_text",
+      "label": "Availability Text",
+      "default": "2 places disponibles pour Décembre"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright Text",
+      "default": "© 2024 THA ASCEND INC. // ALL SYSTEMS OPERATIONAL."
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter/X URL"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "url",
+      "id": "github_url",
+      "label": "GitHub URL"
+    }
+  ]
+}
+{% endschema %}

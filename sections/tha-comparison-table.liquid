@@ -1,0 +1,104 @@
+{% comment %}
+  THA ASCEND - Comparison Table
+  Trust builder comparing standard themes vs THA ASCEND
+{% endcomment %}
+
+<section class="section section-lg">
+  <div class="container" style="max-width: 900px;">
+    
+    <h2 class="heading-md text-center mb-16">{{ section.settings.heading | default: 'POURQUOI NOUS CHOISIR' }}</h2>
+
+    <div class="card" style="border-radius: 0.75rem; overflow: hidden; background: rgba(15, 15, 15, 0.5); backdrop-filter: blur(8px);">
+      
+      {%- comment -%} Table Header {%- endcomment -%}
+      <div class="grid grid-cols-3 text-mono" style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-bottom: 1px solid var(--color-border); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-muted);">
+        <div>Feature</div>
+        <div class="text-center">Thème Standard</div>
+        <div class="text-center" style="color: var(--color-accent); font-weight: 700;">Tha Ascend</div>
+      </div>
+
+      {%- comment -%} Table Rows {%- endcomment -%}
+      {% for block in section.blocks %}
+        <div class="grid grid-cols-3 comparison-row" style="padding: 1.5rem 1rem; border-bottom: 1px solid rgba(39, 39, 42, 0.5); align-items: center; transition: background 0.3s;">
+          <div style="font-weight: 700; font-size: 0.875rem;">{{ block.settings.feature }}</div>
+          <div class="text-center" style="font-size: 0.875rem; {% if block.settings.standard_bad %}color: #ef4444;{% else %}color: var(--color-muted);{% endif %} font-family: var(--font-mono);">
+            {{ block.settings.standard_value }}
+          </div>
+          <div class="text-center" style="font-size: 0.875rem; color: {% if block.settings.tha_highlight %}var(--color-success){% else %}white{% endif %}; font-family: var(--font-mono); font-weight: {% if block.settings.tha_highlight %}700{% else %}400{% endif %};">
+            {{ block.settings.tha_value }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparison-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .comparison-row:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-3 {
+      grid-template-columns: 1.5fr 1fr 1fr !important;
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Comparison Table",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "POURQUOI NOUS CHOISIR"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Feature Name"
+        },
+        {
+          "type": "text",
+          "id": "standard_value",
+          "label": "Standard Theme Value"
+        },
+        {
+          "type": "checkbox",
+          "id": "standard_bad",
+          "label": "Highlight as negative (red)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "tha_value",
+          "label": "THA Ascend Value"
+        },
+        {
+          "type": "checkbox",
+          "id": "tha_highlight",
+          "label": "Highlight THA value (green)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "THA Comparison"
+    }
+  ]
+}
+{% endschema %}

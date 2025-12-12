@@ -1,0 +1,186 @@
+{% comment %}
+  THA ASCEND - Pricing Plans
+  3-tier pricing with recommended plan highlighted
+{% endcomment %}
+
+<section class="section section-lg border-t" style="background: var(--color-card);">
+  <div class="container" style="max-width: 1100px;">
+    
+    <div class="grid grid-cols-3" style="gap: 2rem;">
+      {% for block in section.blocks %}
+        <div class="card" style="display: flex; flex-direction: column; {% if block.settings.recommended %}border-color: var(--color-accent); background: rgba(59, 130, 246, 0.05);{% else %}background: var(--color-bg);{% endif %} position: relative; overflow: visible;">
+          
+          {%- comment -%} Recommended Badge {%- endcomment -%}
+          {% if block.settings.recommended %}
+          <div style="position: absolute; top: 0; right: 0; background: var(--color-accent); color: white; font-size: 0.625rem; padding: 0.25rem 0.75rem; font-weight: 700; font-family: var(--font-mono); border-bottom-left-radius: 0.5rem;">
+            RECOMMENDED
+          </div>
+          {% endif %}
+
+          {%- comment -%} Plan Label {%- endcomment -%}
+          <div class="text-mono" style="font-size: 0.75rem; color: {% if block.settings.recommended %}var(--color-accent){% else %}var(--color-muted){% endif %}; text-transform: uppercase; margin-bottom: 1rem;">
+            / {{ block.settings.category }}
+          </div>
+
+          {%- comment -%} Plan Name {%- endcomment -%}
+          <h3 class="font-display" style="font-size: 1.875rem; font-weight: 700; margin-bottom: 0.5rem;">
+            {{ block.settings.plan_name }}
+          </h3>
+
+          {%- comment -%} Price {%- endcomment -%}
+          <div style="font-size: 1.5rem; color: white; margin-bottom: 2rem;">
+            {{ block.settings.price }}
+          </div>
+
+          {%- comment -%} Features List {%- endcomment -%}
+          <ul style="list-style: none; padding: 0; margin-bottom: 2rem; flex: 1; font-size: 0.875rem; color: var(--color-muted);">
+            {% if block.settings.feature_1 != blank %}
+            <li style="display: flex; gap: 0.75rem; margin-bottom: 1rem; {% if block.settings.feature_1_bold %}color: white;{% endif %}">
+              <span style="color: var(--color-accent);">✓</span>
+              {% if block.settings.feature_1_bold %}<strong>{% endif %}
+              {{ block.settings.feature_1 }}
+              {% if block.settings.feature_1_bold %}</strong>{% endif %}
+            </li>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+            <li style="display: flex; gap: 0.75rem; margin-bottom: 1rem; {% if block.settings.feature_2_bold %}color: white;{% endif %}">
+              <span style="color: var(--color-accent);">✓</span>
+              {% if block.settings.feature_2_bold %}<strong>{% endif %}
+              {{ block.settings.feature_2 }}
+              {% if block.settings.feature_2_bold %}</strong>{% endif %}
+            </li>
+            {% endif %}
+            {% if block.settings.feature_3 != blank %}
+            <li style="display: flex; gap: 0.75rem; margin-bottom: 1rem; {% if block.settings.feature_3_bold %}color: white;{% endif %}">
+              <span style="color: var(--color-accent);">✓</span>
+              {% if block.settings.feature_3_bold %}<strong>{% endif %}
+              {{ block.settings.feature_3 }}
+              {% if block.settings.feature_3_bold %}</strong>{% endif %}
+            </li>
+            {% endif %}
+            {% if block.settings.feature_4 != blank %}
+            <li style="display: flex; gap: 0.75rem; {% if block.settings.feature_4_bold %}color: white;{% endif %}">
+              <span style="color: var(--color-accent);">✓</span>
+              {% if block.settings.feature_4_bold %}<strong>{% endif %}
+              {{ block.settings.feature_4 }}
+              {% if block.settings.feature_4_bold %}</strong>{% endif %}
+            </li>
+            {% endif %}
+          </ul>
+
+          {%- comment -%} CTA Button {%- endcomment -%}
+          <a href="{{ block.settings.cta_url }}" class="btn {% if block.settings.recommended %}btn-primary{% else %}btn-secondary{% endif %}" style="width: 100%; text-align: center;">
+            {{ block.settings.cta_text | default: 'Start Project' }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .grid-cols-3 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Pricing",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Pricing Plan",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category Label",
+          "default": "Starter"
+        },
+        {
+          "type": "text",
+          "id": "plan_name",
+          "label": "Plan Name",
+          "default": "Launch"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "1,500€"
+        },
+        {
+          "type": "checkbox",
+          "id": "recommended",
+          "label": "Mark as Recommended",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "feature_1_bold",
+          "label": "Bold Feature 1",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "feature_2_bold",
+          "label": "Bold Feature 2",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "feature_3_bold",
+          "label": "Bold Feature 3",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "feature_4_bold",
+          "label": "Bold Feature 4",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Button Text",
+          "default": "Start Project"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "THA Pricing"
+    }
+  ]
+}
+{% endschema %}
