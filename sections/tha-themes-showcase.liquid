@@ -1,0 +1,196 @@
+{% comment %}
+  THA ASCEND - Themes Showcase
+  Premium themes display with mockups
+{% endcomment %}
+
+<section class="section section-lg border-t border-b relative" style="background: #080808; overflow: hidden;">
+  
+  {%- comment -%} Background Text {%- endcomment -%}
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20vw; font-weight: 700; font-family: var(--font-display); color: white; opacity: 0.02; pointer-events: none; user-select: none; z-index: 0;">
+    ASSETS
+  </div>
+
+  <div class="container relative" style="z-index: 10;">
+    
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 class="heading-lg mb-2">{{ section.settings.heading | default: 'PROPRIETARY THEMES' }}</h2>
+        <p class="text-muted">{{ section.settings.subheading | default: 'Licences uniques. Code source complet inclus.' }}</p>
+      </div>
+      {% if section.settings.changelog_url != blank %}
+      <a href="{{ section.settings.changelog_url }}" class="text-mono" style="color: var(--color-accent); font-size: 0.75rem; text-decoration: none;">
+        View Changelog ->
+      </a>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Themes Grid {%- endcomment -%}
+    <div class="grid grid-cols-2" style="gap: 3rem;">
+      {% for block in section.blocks %}
+        <div>
+          
+          {%- comment -%} Theme Mockup {%- endcomment -%}
+          <div style="position: relative; aspect-ratio: 16/9; background: var(--color-card); border: 1px solid var(--color-border); border-radius: 0.75rem; overflow: hidden; margin-bottom: 1.5rem;">
+            <div style="position: absolute; inset: 1rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 0.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.5s;" class="theme-mockup">
+              <span style="font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 700; font-family: var(--font-display); color: white; mix-blend-mode: difference; z-index: 10;">{{ block.settings.theme_name }}</span>
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top right, rgba({{ block.settings.gradient_color }}, 0.2), transparent);"></div>
+              <div style="width: 128px; height: 128px; background: rgba({{ block.settings.gradient_color }}, 0.2); border-radius: 50%; filter: blur(80px); position: absolute;"></div>
+            </div>
+            
+            {%- comment -%} Badge {%- endcomment -%}
+            {% if block.settings.badge_text != blank %}
+            <div style="position: absolute; top: 1.5rem; right: 1.5rem; background: {{ block.settings.badge_bg }}; color: {{ block.settings.badge_color }}; font-size: 0.625rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: var(--font-mono);">
+              {{ block.settings.badge_text }}
+            </div>
+            {% endif %}
+          </div>
+
+          {%- comment -%} Theme Info {%- endcomment -%}
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <h3 class="font-display" style="font-size: 1.5rem; font-weight: 700;">{{ block.settings.title }}</h3>
+              <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.25rem;">{{ block.settings.subtitle }}</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 1.25rem; font-weight: 700; color: white;">{{ block.settings.price }}</div>
+              <div class="text-mono" style="font-size: 0.625rem; color: var(--color-success);">{{ block.settings.availability }}</div>
+            </div>
+          </div>
+
+          {%- comment -%} Features Tags {%- endcomment -%}
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+            {% if block.settings.feature_1 != blank %}
+            <span style="padding: 0.25rem 0.5rem; border: 1px solid var(--color-border); border-radius: 0.25rem; font-size: 0.625rem; color: var(--color-muted); font-family: var(--font-mono);">{{ block.settings.feature_1 }}</span>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+            <span style="padding: 0.25rem 0.5rem; border: 1px solid var(--color-border); border-radius: 0.25rem; font-size: 0.625rem; color: var(--color-muted); font-family: var(--font-mono);">{{ block.settings.feature_2 }}</span>
+            {% endif %}
+            {% if block.settings.feature_3 != blank %}
+            <span style="padding: 0.25rem 0.5rem; border: 1px solid var(--color-border); border-radius: 0.25rem; font-size: 0.625rem; color: var(--color-muted); font-family: var(--font-mono);">{{ block.settings.feature_3 }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .theme-mockup:hover {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Themes Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "PROPRIETARY THEMES"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Licences uniques. Code source complet inclus."
+    },
+    {
+      "type": "url",
+      "id": "changelog_url",
+      "label": "Changelog URL"
+    }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "theme",
+      "name": "Theme",
+      "settings": [
+        {
+          "type": "text",
+          "id": "theme_name",
+          "label": "Theme Name (Display)",
+          "default": "KICKS"
+        },
+        {
+          "type": "text",
+          "id": "gradient_color",
+          "label": "Gradient RGB Color",
+          "default": "59, 130, 246",
+          "info": "RGB values separated by commas (e.g., 59, 130, 246)"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Badge Background",
+          "default": "#3B82F6"
+        },
+        {
+          "type": "color",
+          "id": "badge_color",
+          "label": "Badge Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Kicks Framework"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "280 €"
+        },
+        {
+          "type": "text",
+          "id": "availability",
+          "label": "Availability Text",
+          "default": "Instant Download"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "THA Themes Showcase"
+    }
+  ]
+}
+{% endschema %}

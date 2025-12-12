@@ -1,0 +1,106 @@
+{% comment %}
+  THA ASCEND - Metrics Strip
+  4-column trust builder with key metrics
+{% endcomment %}
+
+<section class="border-t border-b" style="background: rgba(15, 15, 15, 0.3);">
+  <div class="container">
+    <div class="grid grid-cols-4" style="gap: 0;">
+      {% for block in section.blocks %}
+        <div class="metric-item" style="padding: 2rem; text-align: center; border-right: 1px solid var(--color-border); transition: background 0.3s;">
+          <div class="text-mono" style="color: var(--color-accent); margin-bottom: 0.5rem;">{{ block.settings.label }}</div>
+          <div class="font-display" style="font-size: 1.875rem; font-weight: 700; color: white; transition: transform 0.3s;">{{ block.settings.value }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .metric-item:last-child {
+    border-right: none;
+  }
+  .metric-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .metric-item:hover .font-display {
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .metric-item:nth-child(2) {
+      border-right: none;
+    }
+    .metric-item:nth-child(3) {
+      border-top: 1px solid var(--color-border);
+    }
+    .metric-item:nth-child(4) {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Metrics Strip",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Metric",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Platform"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "Shopify 2.0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "THA Metrics",
+      "blocks": [
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Platform",
+            "value": "Shopify 2.0"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Avg Speed",
+            "value": "< 1.2s"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Liquid Code",
+            "value": "100% Custom"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Partners",
+            "value": "Certified"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
