@@ -1,0 +1,113 @@
+{% comment %}
+  THA ASCEND - Header Section
+  Fixed header with logo, navigation, and CTA
+{% endcomment %}
+
+<header class="site-header fixed w-full top-0 z-100 border-b border-accent/20 backdrop-blur">
+  <div class="container">
+    <div class="flex justify-between items-center" style="height: 80px;">
+      
+      {%- comment -%} Logo {%- endcomment -%}
+      <div class="flex items-center gap-4">
+        <div style="width: 32px; height: 32px; background: linear-gradient(to bottom right, var(--color-accent), #2563eb); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+          A
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <span class="font-display" style="font-weight: 700; font-size: 1.125rem; line-height: 1; letter-spacing: -0.02em;">
+            {{ section.settings.site_name | default: 'THA ASCEND' }}
+          </span>
+          <span class="text-mono" style="font-size: 0.625rem; color: var(--color-muted); letter-spacing: 0.15em;">
+            {{ section.settings.tagline | default: 'Shopify Engineers' }}
+          </span>
+        </div>
+      </div>
+
+      {%- comment -%} Navigation Desktop {%- endcomment -%}
+      <nav class="hide-mobile flex gap-8 text-mono" style="font-size: 0.75rem;">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" class="hover-accent" style="color: var(--color-muted); transition: color 0.3s;">
+            / {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+
+      {%- comment -%} CTA Button {%- endcomment -%}
+      <a href="{{ section.settings.cta_url }}" class="btn btn-white hide-mobile">
+        {{ section.settings.cta_text | default: 'Start Project_' }}
+      </a>
+
+      {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
+      <button class="hide-desktop" id="mobile-menu-toggle" aria-label="Toggle menu" style="background: none; border: none; color: white; cursor: pointer;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile Menu {%- endcomment -%}
+<div id="mobile-menu" class="hide-desktop" style="display: none; position: fixed; top: 80px; left: 0; right: 0; bottom: 0; background: var(--color-card); z-index: 99; padding: 2rem;">
+  <nav style="display: flex; flex-direction: column; gap: 1.5rem;">
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}" class="text-mono" style="color: white; font-size: 1rem; text-decoration: none;">
+        {{ link.title }}
+      </a>
+    {% endfor %}
+    <a href="{{ section.settings.cta_url }}" class="btn btn-primary" style="margin-top: 1rem;">
+      {{ section.settings.cta_text }}
+    </a>
+  </nav>
+</div>
+
+<script>
+  document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+    var menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  });
+</script>
+
+<style>
+  .hover-accent:hover {
+    color: var(--color-accent) !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "THA Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "site_name",
+      "label": "Site Name",
+      "default": "THA ASCEND"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Shopify Engineers"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Start Project_"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    }
+  ]
+}
+{% endschema %}
