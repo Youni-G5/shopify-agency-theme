@@ -1,149 +1,279 @@
 {
   "sections": {
-    "hero_modern": {
-      "type": "hero-modern",
+    "header": {
+      "type": "tha-header",
       "settings": {
-        "eyebrow": "🚀 Agence Shopify Premium",
-        "heading": "Créons Ensemble Votre <span class='text-gradient-vivid'>Boutique de Rêve</span>",
-        "subheading": "Des thèmes Shopify sur-mesure qui convertissent. Design moderne, performance optimale, support premium.",
-        "primary_button_text": "Voir Notre Portfolio",
-        "primary_button_link": "/pages/portfolio",
-        "secondary_button_text": "Demander un Devis",
-        "secondary_button_link": "/pages/contact",
-        "show_stats": true,
-        "stat_1_number": 50,
-        "stat_1_label": "Projets Réussis",
-        "stat_2_number": 98,
-        "stat_2_label": "% Satisfaction",
-        "stat_3_number": 24,
-        "stat_3_label": "Heures Support"
+        "site_name": "THA ASCEND",
+        "tagline": "Shopify Engineers",
+        "menu": "main-menu",
+        "cta_text": "Start Project_",
+        "cta_url": "#contact"
       }
     },
-    "features_glass": {
-      "type": "features-glassmorphism",
+    "hero": {
+      "type": "tha-hero",
+      "settings": {
+        "show_badge": true,
+        "badge_text": "v2.0 System Available",
+        "headline_line1": "ECOMMERCE",
+        "headline_line2": "WITHOUT",
+        "headline_line3": "FRICTION.",
+        "description": "Nous construisons des écosystèmes Shopify ultra-performants. Pas de bloatware, pas de code inutile. Juste du revenu pur.",
+        "cta_primary_text": "Auditer ma boutique",
+        "cta_primary_url": "#contact",
+        "cta_secondary_text": "Voir les thèmes",
+        "cta_secondary_url": "#themes"
+      }
+    },
+    "metrics": {
+      "type": "tha-metrics-strip",
       "blocks": {
-        "feature_1": {
-          "type": "feature",
+        "metric-1": {
+          "type": "metric",
           "settings": {
-            "icon": "🚀",
-            "title": "Performance Optimale",
-            "description": "Sites ultra-rapides avec un score PageSpeed > 90. Optimisation poussée pour maximiser vos conversions."
+            "label": "Platform",
+            "value": "Shopify 2.0"
           }
         },
-        "feature_2": {
-          "type": "feature",
+        "metric-2": {
+          "type": "metric",
           "settings": {
-            "icon": "🎨",
-            "title": "Design Unique",
-            "description": "Identité visuelle forte et mémorable. Chaque projet est conçu sur-mesure pour refléter votre marque."
+            "label": "Avg Speed",
+            "value": "< 1.2s"
           }
         },
-        "feature_3": {
-          "type": "feature",
+        "metric-3": {
+          "type": "metric",
           "settings": {
-            "icon": "💎",
-            "title": "Code Premium",
-            "description": "Architecture Shopify 2.0, code propre et maintenable. Conformité aux standards les plus élevés."
+            "label": "Liquid Code",
+            "value": "100% Custom"
           }
         },
-        "feature_4": {
-          "type": "feature",
+        "metric-4": {
+          "type": "metric",
           "settings": {
-            "icon": "📱",
-            "title": "Mobile-First",
-            "description": "Expérience impeccable sur tous les appareils. 70% de vos clients sont sur mobile."
-          }
-        },
-        "feature_5": {
-          "type": "feature",
-          "settings": {
-            "icon": "🔍",
-            "title": "SEO Optimisé",
-            "description": "Structure technique parfaite pour Google. Meta tags, schema markup, vitesse optimisée."
-          }
-        },
-        "feature_6": {
-          "type": "feature",
-          "settings": {
-            "icon": "💬",
-            "title": "Support Premium",
-            "description": "Accompagnement personnalisé et réactif. Formation complète pour gérer votre boutique en toute autonomie."
+            "label": "Partners",
+            "value": "Certified"
           }
         }
       },
-      "block_order": [
-        "feature_1",
-        "feature_2",
-        "feature_3",
-        "feature_4",
-        "feature_5",
-        "feature_6"
-      ],
-      "settings": {
-        "eyebrow": "✨ Nos Avantages",
-        "heading": "Pourquoi Nous Choisir",
-        "subheading": "Une expertise reconnue au service de votre réussite e-commerce"
-      }
+      "block_order": ["metric-1", "metric-2", "metric-3", "metric-4"]
     },
-    "portfolio_modern": {
-      "type": "portfolio-modern",
+    "tech-stack": {
+      "type": "tha-tech-stack",
+      "settings": {
+        "heading": "NOTRE \"TECH STACK\"",
+        "description": "Nous ne sommes pas des graphistes qui \"bricolent\" du code. Nous sommes des ingénieurs qui comprennent le commerce."
+      },
       "blocks": {
-        "project_1": {
-          "type": "project",
+        "service-1": {
+          "type": "service",
           "settings": {
-            "category": "E-commerce Mode",
-            "title": "Boutique Mode Luxe",
-            "description": "Site e-commerce haut de gamme avec expérience d'achat premium. +150% de conversions en 6 mois.",
-            "tags": "Shopify, Design, UX/UI, Performance"
+            "icon_svg": "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'></path></svg>",
+            "title": "Architecture Liquid",
+            "description": "Développement de sections modulaires 2.0. Nous remplaçons vos applications coûteuses par du code natif léger et maintenable.",
+            "feature_1": "Sections Everywhere",
+            "feature_2": "Metaobjects"
           }
         },
-        "project_2": {
-          "type": "project",
+        "service-2": {
+          "type": "service",
           "settings": {
-            "category": "Marketplace",
-            "title": "Marketplace Tech",
-            "description": "Plateforme multi-vendeurs avec gestion avancée des commandes et paiements sécurisés.",
-            "tags": "Shopify Plus, Multi-vendor, API"
+            "icon_svg": "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'></path></svg>",
+            "title": "UX de Conversion",
+            "description": "Design \"Mobile First\" obsédé par le CRO (Conversion Rate Optimization). Chaque pixel est pensé pour guider vers le Checkout.",
+            "feature_1": "Panier Slide-out",
+            "feature_2": "Sticky ATC"
           }
         },
-        "project_3": {
-          "type": "project",
+        "service-3": {
+          "type": "service",
           "settings": {
-            "category": "Beauté & Bien-être",
-            "title": "Cosmétiques Bio",
-            "description": "Boutique éco-responsable avec système d'abonnement et programme de fidélité intégré.",
-            "tags": "Shopify, Abonnement, SEO"
-          }
-        },
-        "project_4": {
-          "type": "project",
-          "settings": {
-            "category": "Bijouterie",
-            "title": "Joaillerie Premium",
-            "description": "Site vitrine et e-shop avec galerie immersive et configurateur de bijoux personnalisés.",
-            "tags": "Design, 3D, Personnalisation"
+            "icon_svg": "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'></path></svg>",
+            "title": "Scale & Data",
+            "description": "Connexion avec votre ERP, implémentation de Klaviyo, et tracking GTM avancé pour nourrir vos campagnes Ads.",
+            "feature_1": "Server-side Tracking",
+            "feature_2": "API Integrations"
           }
         }
       },
-      "block_order": [
-        "project_1",
-        "project_2",
-        "project_3",
-        "project_4"
-      ],
+      "block_order": ["service-1", "service-2", "service-3"]
+    },
+    "themes": {
+      "type": "tha-themes-showcase",
       "settings": {
-        "eyebrow": "💼 Portfolio",
-        "heading": "Nos Réalisations",
-        "subheading": "Découvrez quelques-uns de nos projets récents et les résultats obtenus",
-        "show_view_all": true,
-        "view_all_text": "Voir Tous Nos Projets",
-        "view_all_link": "/pages/portfolio"
+        "heading": "PROPRIETARY THEMES",
+        "subheading": "Licences uniques. Code source complet inclus.",
+        "changelog_url": "/pages/changelog"
+      },
+      "blocks": {
+        "theme-1": {
+          "type": "theme",
+          "settings": {
+            "theme_name": "KICKS",
+            "gradient_color": "59, 130, 246",
+            "badge_text": "v2.4 STABLE",
+            "badge_bg": "#3B82F6",
+            "badge_color": "#ffffff",
+            "title": "Kicks Framework",
+            "subtitle": "Pour Streetwear & High Volume.",
+            "price": "280 €",
+            "availability": "Instant Download",
+            "feature_1": "Lookbooks",
+            "feature_2": "Quick Buy",
+            "feature_3": "Countdown"
+          }
+        },
+        "theme-2": {
+          "type": "theme",
+          "settings": {
+            "theme_name": "GLOW",
+            "gradient_color": "147, 51, 234",
+            "badge_text": "NEW",
+            "badge_bg": "#ffffff",
+            "badge_color": "#000000",
+            "title": "Glow Skin",
+            "subtitle": "Pour Cosmétiques & Luxe.",
+            "price": "250 €",
+            "availability": "Instant Download",
+            "feature_1": "Ingredients Tab",
+            "feature_2": "Bundles",
+            "feature_3": "Video BG"
+          }
+        }
+      },
+      "block_order": ["theme-1", "theme-2"]
+    },
+    "comparison": {
+      "type": "tha-comparison-table",
+      "settings": {
+        "heading": "POURQUOI NOUS CHOISIR"
+      },
+      "blocks": {
+        "row-1": {
+          "type": "row",
+          "settings": {
+            "feature": "Vitesse (Mobile)",
+            "standard_value": "35-50/100",
+            "standard_bad": true,
+            "tha_value": "90+/100",
+            "tha_highlight": true
+          }
+        },
+        "row-2": {
+          "type": "row",
+          "settings": {
+            "feature": "Dépendance aux Apps",
+            "standard_value": "Haute (5-10 apps)",
+            "standard_bad": false,
+            "tha_value": "Nulle (Natif)",
+            "tha_highlight": false
+          }
+        },
+        "row-3": {
+          "type": "row",
+          "settings": {
+            "feature": "Code Source",
+            "standard_value": "Obfusqué / Complexe",
+            "standard_bad": false,
+            "tha_value": "100% Accessible",
+            "tha_highlight": false
+          }
+        },
+        "row-4": {
+          "type": "row",
+          "settings": {
+            "feature": "Support",
+            "standard_value": "Tickets lents",
+            "standard_bad": false,
+            "tha_value": "Développeurs Directs",
+            "tha_highlight": false
+          }
+        }
+      },
+      "block_order": ["row-1", "row-2", "row-3", "row-4"]
+    },
+    "pricing": {
+      "type": "tha-pricing",
+      "blocks": {
+        "plan-1": {
+          "type": "plan",
+          "settings": {
+            "category": "Starter",
+            "plan_name": "Launch",
+            "price": "1,500€",
+            "recommended": false,
+            "feature_1": "Setup Shopify Complet",
+            "feature_1_bold": true,
+            "feature_2": "Thème Premium Inclus",
+            "feature_2_bold": true,
+            "feature_3": "Formation 1h",
+            "feature_3_bold": true,
+            "cta_text": "Start Project",
+            "cta_url": "#contact"
+          }
+        },
+        "plan-2": {
+          "type": "plan",
+          "settings": {
+            "category": "Growth",
+            "plan_name": "Scale",
+            "price": "4,500€",
+            "recommended": true,
+            "feature_1": "Design UX Sur Mesure",
+            "feature_1_bold": true,
+            "feature_2": "Dev Liquid Custom",
+            "feature_2_bold": true,
+            "feature_3": "Migration Données",
+            "feature_3_bold": false,
+            "feature_4": "Optimisation SEO",
+            "feature_4_bold": false,
+            "cta_text": "Apply Now",
+            "cta_url": "#contact"
+          }
+        },
+        "plan-3": {
+          "type": "plan",
+          "settings": {
+            "category": "Enterprise",
+            "plan_name": "Custom",
+            "price": "Sur Devis",
+            "recommended": false,
+            "feature_1": "Headless (Hydrogen)",
+            "feature_1_bold": false,
+            "feature_2": "Apps Privées",
+            "feature_2_bold": false,
+            "feature_3": "Retainer Mensuel",
+            "feature_3_bold": false,
+            "cta_text": "Contact Us",
+            "cta_url": "#contact"
+          }
+        }
+      },
+      "block_order": ["plan-1", "plan-2", "plan-3"]
+    },
+    "footer": {
+      "type": "tha-footer-contact",
+      "settings": {
+        "contact_heading": "READY TO<br>DOMINATE?",
+        "contact_description": "Nous acceptons 3 nouveaux clients par mois pour maintenir nos standards de qualité.",
+        "show_availability": true,
+        "availability_text": "2 places disponibles pour Décembre",
+        "copyright": "© 2024 THA ASCEND INC. // ALL SYSTEMS OPERATIONAL.",
+        "twitter_url": "https://twitter.com",
+        "linkedin_url": "https://linkedin.com",
+        "github_url": "https://github.com"
       }
     }
   },
   "order": [
-    "hero_modern",
-    "features_glass",
-    "portfolio_modern"
+    "header",
+    "hero",
+    "metrics",
+    "tech-stack",
+    "themes",
+    "comparison",
+    "pricing",
+    "footer"
   ]
 }

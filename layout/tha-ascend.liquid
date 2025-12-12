@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>{{ page_title }}{{ page_title | default: shop.name }}</title>
+  
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {%- endif -%}
+
+  {%- comment -%} Preconnect to critical domains {%- endcomment -%}
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  {%- comment -%} THA ASCEND Stylesheet {%- endcomment -%}
+  {{ 'tha-ascend.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%} Shopify Required {%- endcomment -%}
+  {{ content_for_header }}
+
+  {%- comment -%} Custom CSS from Theme Settings {%- endcomment -%}
+  {% if settings.custom_css != blank %}
+    <style>
+      {{ settings.custom_css }}
+    </style>
+  {% endif %}
+</head>
+
+<body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+  
+  {%- comment -%} Skip to Content Link (Accessibility) {%- endcomment -%}
+  <a href="#main-content" class="skip-to-content-link" style="position: absolute; left: -9999px; z-index: 9999; padding: 1rem; background-color: var(--color-accent); color: white; text-decoration: none;">
+    Skip to content
+  </a>
+
+  {%- comment -%} Background Grid Pattern {%- endcomment -%}
+  <div class="tech-grid"></div>
+
+  {%- comment -%} Main Content {%- endcomment -%}
+  <main id="main-content" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%- comment -%} Shopify Theme Scripts {%- endcomment -%}
+  <script>
+    // Add to Cart functionality
+    window.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('form[action="/cart/add"]');
+      forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Refresh cart or show notification
+            alert('Product added to cart!');
+            // You can replace this with a nicer notification
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        });
+      });
+    });
+
+    // Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '#!') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
